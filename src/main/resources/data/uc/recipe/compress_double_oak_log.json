@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "uc:compressed_oak_log"
+        }
+    },
+    "result": {
+        "id": "uc:double_compressed_oak_log",
+        "count": 1
+    }
+}

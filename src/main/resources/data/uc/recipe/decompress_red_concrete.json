@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "uc:compressed_red_concrete"
+        }
+    ],
+    "result": {
+        "id": "minecraft:red_concrete",
+        "count": 9
+    }
+}

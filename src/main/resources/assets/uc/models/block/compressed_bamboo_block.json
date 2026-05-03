@@ -1,0 +1,12 @@
+{
+    "parent": "minecraft:block/cube",
+    "textures": {
+        "particle": "uc:block/compressed_bamboo_block",
+        "down": "uc:block/compressed_bamboo_block_top",
+        "up": "uc:block/compressed_bamboo_block_top",
+        "north": "uc:block/compressed_bamboo_block",
+        "south": "uc:block/compressed_bamboo_block",
+        "east": "uc:block/compressed_bamboo_block",
+        "west": "uc:block/compressed_bamboo_block"
+    }
+}

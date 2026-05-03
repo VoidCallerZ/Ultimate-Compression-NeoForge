@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#C#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:gold_nugget"
+        },
+        "C": {
+            "item": "uc:compression_catalyst"
+        }
+    },
+    "result": {
+        "id": "uc:compressed_gold_nugget",
+        "count": 1
+    }
+}

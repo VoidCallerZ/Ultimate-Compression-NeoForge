@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "uc:compressed_andesite"
+        }
+    ],
+    "result": {
+        "id": "minecraft:andesite",
+        "count": 9
+    }
+}

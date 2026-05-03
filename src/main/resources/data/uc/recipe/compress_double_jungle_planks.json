@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "uc:compressed_jungle_planks"
+        }
+    },
+    "result": {
+        "id": "uc:double_compressed_jungle_planks",
+        "count": 1
+    }
+}

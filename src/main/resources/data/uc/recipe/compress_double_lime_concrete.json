@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "uc:compressed_lime_concrete"
+        }
+    },
+    "result": {
+        "id": "uc:double_compressed_lime_concrete",
+        "count": 1
+    }
+}

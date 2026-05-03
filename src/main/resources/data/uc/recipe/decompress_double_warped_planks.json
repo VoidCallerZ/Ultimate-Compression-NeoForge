@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "uc:double_compressed_warped_planks"
+        }
+    ],
+    "result": {
+        "id": "uc:compressed_warped_planks",
+        "count": 9
+    }
+}

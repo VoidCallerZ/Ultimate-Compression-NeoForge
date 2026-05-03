@@ -1,0 +1,12 @@
+{
+    "parent": "minecraft:block/cube",
+    "textures": {
+        "particle": "uc:block/double_compressed_cherry_log",
+        "down": "uc:block/double_compressed_cherry_log_top",
+        "up": "uc:block/double_compressed_cherry_log_top",
+        "north": "uc:block/double_compressed_cherry_log",
+        "south": "uc:block/double_compressed_cherry_log",
+        "east": "uc:block/double_compressed_cherry_log",
+        "west": "uc:block/double_compressed_cherry_log"
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "## ",
+        "#S ",
+        " S "
+    ],
+    "key": {
+        "#": {
+            "item": "uc:compressed_oak_planks"
+        },
+        "S": {
+            "item": "uc:compressed_stick"
+        }
+    },
+    "result": {
+        "id": "uc:compressed_wood_axe",
+        "count": 1
+    }
+}

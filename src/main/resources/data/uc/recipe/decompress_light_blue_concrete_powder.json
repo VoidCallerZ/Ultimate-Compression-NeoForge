@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "uc:compressed_light_blue_concrete_powder"
+        }
+    ],
+    "result": {
+        "id": "minecraft:light_blue_concrete_powder",
+        "count": 9
+    }
+}

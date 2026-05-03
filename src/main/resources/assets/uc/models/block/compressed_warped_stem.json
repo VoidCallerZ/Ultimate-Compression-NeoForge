@@ -1,0 +1,12 @@
+{
+    "parent": "minecraft:block/cube",
+    "textures": {
+        "particle": "uc:block/compressed_warped_stem",
+        "down": "uc:block/compressed_warped_stem_top",
+        "up": "uc:block/compressed_warped_stem_top",
+        "north": "uc:block/compressed_warped_stem",
+        "south": "uc:block/compressed_warped_stem",
+        "east": "uc:block/compressed_warped_stem",
+        "west": "uc:block/compressed_warped_stem"
+    }
+}

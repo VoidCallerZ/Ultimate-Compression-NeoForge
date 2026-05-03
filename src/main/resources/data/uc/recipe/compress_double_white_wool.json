@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "uc:compressed_white_wool"
+        }
+    },
+    "result": {
+        "id": "uc:double_compressed_white_wool",
+        "count": 1
+    }
+}

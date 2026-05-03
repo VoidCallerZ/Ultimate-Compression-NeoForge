@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#C#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:copper_ingot"
+        },
+        "C": {
+            "item": "uc:compression_catalyst"
+        }
+    },
+    "result": {
+        "id": "uc:compressed_copper_ingot",
+        "count": 1
+    }
+}

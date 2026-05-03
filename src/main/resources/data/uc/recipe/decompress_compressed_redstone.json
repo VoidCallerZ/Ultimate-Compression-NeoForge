@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "uc:compressed_redstone"
+        }
+    ],
+    "result": {
+        "id": "minecraft:redstone",
+        "count": 8
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "uc:compressed_mangrove_log"
+        }
+    ],
+    "result": {
+        "id": "minecraft:mangrove_log",
+        "count": 9
+    }
+}

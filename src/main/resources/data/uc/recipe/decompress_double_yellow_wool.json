@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "uc:double_compressed_yellow_wool"
+        }
+    ],
+    "result": {
+        "id": "uc:compressed_yellow_wool",
+        "count": 9
+    }
+}

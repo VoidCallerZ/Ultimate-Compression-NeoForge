@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+        {
+            "rolls": 1,
+            "bonus_rolls": 0,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "uc:double_compressed_orange_concrete_powder"
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:blue_concrete"
+        }
+    },
+    "result": {
+        "id": "uc:compressed_blue_concrete",
+        "count": 1
+    }
+}

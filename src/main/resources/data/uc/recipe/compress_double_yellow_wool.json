@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "uc:compressed_yellow_wool"
+        }
+    },
+    "result": {
+        "id": "uc:double_compressed_yellow_wool",
+        "count": 1
+    }
+}

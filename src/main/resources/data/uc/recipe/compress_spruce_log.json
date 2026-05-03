@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:spruce_log"
+        }
+    },
+    "result": {
+        "id": "uc:compressed_spruce_log",
+        "count": 1
+    }
+}

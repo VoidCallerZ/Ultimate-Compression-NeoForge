@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "": {
+            "model": "uc:block/double_compressed_copper_block"
+        }
+    }
+}

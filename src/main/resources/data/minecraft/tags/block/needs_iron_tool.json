@@ -1,0 +1,25 @@
+{
+    "replace": false,
+    "values": [
+        "uc:compressed_amethyst_block",
+        "uc:compressed_coal_block",
+        "uc:compressed_copper_block",
+        "uc:compressed_gold_block",
+        "uc:compressed_iron_block",
+        "uc:compressed_lapis_block",
+        "uc:compressed_raw_copper_block",
+        "uc:compressed_raw_gold_block",
+        "uc:compressed_raw_iron_block",
+        "uc:compressed_redstone_block",
+        "uc:double_compressed_amethyst_block",
+        "uc:double_compressed_coal_block",
+        "uc:double_compressed_copper_block",
+        "uc:double_compressed_gold_block",
+        "uc:double_compressed_iron_block",
+        "uc:double_compressed_lapis_block",
+        "uc:double_compressed_raw_copper_block",
+        "uc:double_compressed_raw_gold_block",
+        "uc:double_compressed_raw_iron_block",
+        "uc:double_compressed_redstone_block"
+    ]
+}

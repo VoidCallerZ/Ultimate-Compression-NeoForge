@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "uc:compressed_green_wool"
+        }
+    ],
+    "result": {
+        "id": "minecraft:green_wool",
+        "count": 9
+    }
+}

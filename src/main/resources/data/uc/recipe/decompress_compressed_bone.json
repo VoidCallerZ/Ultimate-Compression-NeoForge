@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "uc:compressed_bone"
+        }
+    ],
+    "result": {
+        "id": "minecraft:bone",
+        "count": 8
+    }
+}

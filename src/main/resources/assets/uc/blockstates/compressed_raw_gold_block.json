@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "": {
+            "model": "uc:block/compressed_raw_gold_block"
+        }
+    }
+}

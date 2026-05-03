@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "S",
+        "S"
+    ],
+    "key": {
+        "#": {
+            "item": "uc:compressed_netherite_ingot"
+        },
+        "S": {
+            "item": "uc:compressed_stick"
+        }
+    },
+    "result": {
+        "id": "uc:compressed_netherite_shovel",
+        "count": 1
+    }
+}

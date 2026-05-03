@@ -1,0 +1,21 @@
+{
+    "replace": false,
+    "values": [
+        "uc:compressed_coal_ore",
+        "uc:compressed_copper_ore",
+        "uc:compressed_diamond_block",
+        "uc:compressed_diamond_ore",
+        "uc:compressed_emerald_block",
+        "uc:compressed_emerald_ore",
+        "uc:compressed_gold_ore",
+        "uc:compressed_iron_ore",
+        "uc:compressed_lapis_ore",
+        "uc:compressed_netherite_block",
+        "uc:compressed_obsidian",
+        "uc:compressed_redstone_ore",
+        "uc:double_compressed_diamond_block",
+        "uc:double_compressed_emerald_block",
+        "uc:double_compressed_netherite_block",
+        "uc:double_compressed_obsidian"
+    ]
+}
