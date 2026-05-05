@@ -132,6 +132,32 @@ ORES = [
         "min_y":            -64,
         "max_y":            -32,
     },
+    {
+        "name":             "compressed_nether_quartz_ore",
+        "display":          "Compressed Nether Quartz Ore",
+        "tool_tier":        "iron",
+        "vanilla_drop":     "quartz",
+        "compressed_drop":  "compressed_quartz",
+        "fortune_bonus":    True,
+        "vein_size":        3,
+        "veins_per_chunk":  3,
+        "min_y":            10,
+        "max_y":            90,
+        "nether":           True,
+    },
+    {
+        "name":             "compressed_nether_gold_ore",
+        "display":          "Compressed Nether Gold Ore",
+        "tool_tier":        "iron",
+        "vanilla_drop":     "gold_nugget",
+        "compressed_drop":  "compressed_gold_nugget",
+        "fortune_bonus":    True,
+        "vein_size":        5,
+        "veins_per_chunk":  10,
+        "min_y":            10,
+        "max_y":            117,
+        "nether":           True,
+    },
 ]
 
 # =============================================================================
@@ -187,7 +213,9 @@ def generate_configured_features(resource_path: Path) -> int:
     out_base = resource_path / "data" / MOD_ID / "worldgen" / "configured_feature"
     count = 0
     for ore in ORES:
-        name = ore["name"]
+        name      = ore["name"]
+        is_nether = ore.get("nether", False)
+        target_tag = "minecraft:base_stone_nether" if is_nether else "minecraft:deepslate_ore_replaceables"
         data = {
             "type": "minecraft:ore",
             "config": {
@@ -195,10 +223,9 @@ def generate_configured_features(resource_path: Path) -> int:
                 "discard_chance_on_air_exposure": 0.0,
                 "targets": [
                     {
-                        # Only replaces deepslate — not stone, not air
                         "target": {
                             "predicate_type": "minecraft:tag_match",
-                            "tag": "minecraft:deepslate_ore_replaceables"
+                            "tag": target_tag
                         },
                         "state": {
                             "Name": f"{MOD_ID}:{name}"
@@ -268,10 +295,12 @@ def generate_biome_modifiers(resource_path: Path) -> int:
     out_base = resource_path / "data" / MOD_ID / LOADER / "biome_modifier"
     count = 0
     for ore in ORES:
-        name = ore["name"]
+        name      = ore["name"]
+        is_nether = ore.get("nether", False)
+        biome_tag = "#minecraft:is_nether" if is_nether else "#minecraft:is_overworld"
         data = {
             "type": f"{LOADER}:add_features",
-            "biomes": "#minecraft:is_overworld",
+            "biomes": biome_tag,
             "features": f"{MOD_ID}:{name}",
             "step": "underground_ores"
         }
@@ -459,13 +488,19 @@ def update_lang(resource_path: Path) -> int:
 def generate_block_tags(resource_path: Path) -> int:
     out_base = resource_path / "data" / "minecraft" / "tags" / "block"
 
-    ore_ids = [f"{MOD_ID}:{ore['name']}" for ore in ORES]
+    all_ids     = [f"{MOD_ID}:{ore['name']}" for ore in ORES]
+    iron_ids    = [f"{MOD_ID}:{ore['name']}" for ore in ORES
+                   if not ore.get("nether", False) and ore.get("tool_tier", "iron") == "iron"]
+    diamond_ids = [f"{MOD_ID}:{ore['name']}" for ore in ORES
+                   if not ore.get("nether", False) and ore.get("tool_tier", "iron") == "diamond"]
 
-    # Additive merge — never overwrites existing entries from generate_data.py
-    write_tag_merged(out_base / "mineable" / "pickaxe.json", ore_ids)
-    write_tag_merged(out_base / "needs_diamond_tool.json", ore_ids)
+    write_tag_merged(out_base / "mineable" / "pickaxe.json", all_ids)
+    if iron_ids:
+        write_tag_merged(out_base / "needs_iron_tool.json", iron_ids)
+    if diamond_ids:
+        write_tag_merged(out_base / "needs_diamond_tool.json", diamond_ids)
 
-    return 2
+    return 3
 
 # =============================================================================
 # SUMMARY & MAIN

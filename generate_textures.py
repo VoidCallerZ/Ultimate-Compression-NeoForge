@@ -197,6 +197,15 @@ COMPRESSED_ORE_TEXTURES = {
 }
 
 # -------------------------------------------------------------------------
+# NETHER ORE TEXTURES — use vanilla nether ore textures as base
+# (netherrack background is already baked into the vanilla texture)
+# -------------------------------------------------------------------------
+COMPRESSED_NETHER_ORE_TEXTURES = {
+    "compressed_nether_quartz_ore": "nether_quartz_ore",
+    "compressed_nether_gold_ore":   "nether_gold_ore",
+}
+
+# -------------------------------------------------------------------------
 # COMPRESSION CATALYST
 # Base texture sourced from iron ingot + redstone composite in write step
 # -------------------------------------------------------------------------
@@ -332,6 +341,16 @@ def extract_all_textures(jar_path):
                     print(f"    x compressed_{mat}_layer_{layer} -- not found in jar")
 
 
+        print("\n  Nether ore textures:")
+        nether_ore_extra = {}
+        for comp_name, vanilla_stem in COMPRESSED_NETHER_ORE_TEXTURES.items():
+            img = extract_from_jar(jar, "block", vanilla_stem)
+            if img:
+                nether_ore_extra[comp_name] = img
+                print(f"    v {comp_name}")
+            else:
+                print(f"    x {comp_name} -- not found, skipping")
+
         print("\n  Ore textures:")
         ore_textures = {}
         for comp_name, vanilla_stem in COMPRESSED_ORE_TEXTURES.items():
@@ -345,6 +364,8 @@ def extract_all_textures(jar_path):
         print("\n  Compression catalyst base textures:")
         catalyst_iron = extract_from_jar(jar, "item", "iron_ingot")
         catalyst_redstone = extract_from_jar(jar, "item", "redstone")
+
+        ore_textures.update(nether_ore_extra)
 
     return side_textures, top_textures, item_textures, tool_textures, armor_item_textures, armor_layer_textures, ore_textures, catalyst_iron, catalyst_redstone
 

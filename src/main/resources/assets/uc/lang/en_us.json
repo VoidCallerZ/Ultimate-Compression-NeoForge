@@ -1,12 +1,4 @@
 {
-    "block.uc.compressed_coal_ore": "Compressed Coal Ore",
-    "block.uc.compressed_iron_ore": "Compressed Iron Ore",
-    "block.uc.compressed_gold_ore": "Compressed Gold Ore",
-    "block.uc.compressed_copper_ore": "Compressed Copper Ore",
-    "block.uc.compressed_diamond_ore": "Compressed Diamond Ore",
-    "block.uc.compressed_emerald_ore": "Compressed Emerald Ore",
-    "block.uc.compressed_lapis_ore": "Compressed Lapis Ore",
-    "block.uc.compressed_redstone_ore": "Compressed Redstone Ore",
     "itemGroup.uc": "Ultimate Compression",
     "block.uc.compressed_stone": "Compressed Stone",
     "block.uc.double_compressed_stone": "Double Compressed Stone",
@@ -277,5 +269,15 @@
     "item.uc.compressed_netherite_helmet": "Compressed Netherite Helmet",
     "item.uc.compressed_netherite_chestplate": "Compressed Netherite Chestplate",
     "item.uc.compressed_netherite_leggings": "Compressed Netherite Leggings",
-    "item.uc.compressed_netherite_boots": "Compressed Netherite Boots"
+    "item.uc.compressed_netherite_boots": "Compressed Netherite Boots",
+    "block.uc.compressed_coal_ore": "Compressed Coal Ore",
+    "block.uc.compressed_iron_ore": "Compressed Iron Ore",
+    "block.uc.compressed_gold_ore": "Compressed Gold Ore",
+    "block.uc.compressed_copper_ore": "Compressed Copper Ore",
+    "block.uc.compressed_diamond_ore": "Compressed Diamond Ore",
+    "block.uc.compressed_emerald_ore": "Compressed Emerald Ore",
+    "block.uc.compressed_lapis_ore": "Compressed Lapis Ore",
+    "block.uc.compressed_redstone_ore": "Compressed Redstone Ore",
+    "block.uc.compressed_nether_quartz_ore": "Compressed Nether Quartz Ore",
+    "block.uc.compressed_nether_gold_ore": "Compressed Nether Gold Ore"
 }

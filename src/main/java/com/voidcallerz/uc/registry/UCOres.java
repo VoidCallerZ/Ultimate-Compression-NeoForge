@@ -44,6 +44,8 @@ public class UCOres {
         { "compressed_emerald_ore",  MapColor.DEEPSLATE, 9, 21 },
         { "compressed_lapis_ore",    MapColor.DEEPSLATE, 6, 15 },  // 3x vanilla (2-5)
         { "compressed_redstone_ore", MapColor.DEEPSLATE, 3, 15 },  // 3x vanilla (1-5)
+        { "compressed_nether_quartz_ore", MapColor.NETHER, 2, 5 },
+        { "compressed_nether_gold_ore",   MapColor.NETHER, 1, 2 },
     };
 
     static {
