@@ -39,7 +39,8 @@ MATERIALS = [
     # Vanilla blocks
     "stone", "cobblestone", "dirt", "grass_block", "sand", "gravel",
     "netherrack", "soul_sand", "soul_soil", "blackstone", "deepslate",
-    "calcite", "tuff", "obsidian",
+    "calcite", "tuff", "obsidian", "basalt", "glowstone", "magma_block",
+    "quartz_block",
     # Stone variants
     "andesite", "diorite", "granite", "cobbled_deepslate",
     # Ore blocks
@@ -83,6 +84,9 @@ TEXTURE_OVERRIDES = {
     "warped_stem":   "warped_stem",
     "crimson_planks": "crimson_planks",
     "warped_planks":  "warped_planks",
+    "basalt":       "basalt_side",
+    "magma_block":   "magma",
+    "quartz_block":  "quartz_block_side",
 }
 
 LOG_TOP_TEXTURES = {
@@ -98,6 +102,8 @@ LOG_TOP_TEXTURES = {
     "crimson_stem": "crimson_stem_top",
     "warped_stem":  "warped_stem_top",
     "grass_block":  "grass_block_top",
+    "basalt":       "basalt_top",
+    "quartz_block": "quartz_block_top",
 }
 
 COMPRESSED_ITEM_TEXTURES = {

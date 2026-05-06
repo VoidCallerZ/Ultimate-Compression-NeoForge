@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "uc:compressed_glowstone"
+        }
+    },
+    "result": {
+        "id": "uc:double_compressed_glowstone",
+        "count": 1
+    }
+}

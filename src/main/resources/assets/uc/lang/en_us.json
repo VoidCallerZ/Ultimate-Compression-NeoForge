@@ -279,5 +279,13 @@
     "block.uc.compressed_lapis_ore": "Compressed Lapis Ore",
     "block.uc.compressed_redstone_ore": "Compressed Redstone Ore",
     "block.uc.compressed_nether_quartz_ore": "Compressed Nether Quartz Ore",
-    "block.uc.compressed_nether_gold_ore": "Compressed Nether Gold Ore"
+    "block.uc.compressed_nether_gold_ore": "Compressed Nether Gold Ore",
+    "block.uc.compressed_basalt": "Compressed Basalt",
+    "block.uc.double_compressed_basalt": "Double Compressed Basalt",
+    "block.uc.compressed_glowstone": "Compressed Glowstone",
+    "block.uc.double_compressed_glowstone": "Double Compressed Glowstone",
+    "block.uc.compressed_magma_block": "Compressed Magma Block",
+    "block.uc.double_compressed_magma_block": "Double Compressed Magma Block",
+    "block.uc.compressed_quartz_block": "Compressed Quartz Block",
+    "block.uc.double_compressed_quartz_block": "Double Compressed Quartz Block"
 }

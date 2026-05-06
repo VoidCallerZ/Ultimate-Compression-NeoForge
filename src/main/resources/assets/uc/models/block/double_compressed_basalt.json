@@ -1,0 +1,12 @@
+{
+    "parent": "minecraft:block/cube",
+    "textures": {
+        "particle": "uc:block/double_compressed_basalt",
+        "down": "uc:block/double_compressed_basalt_top",
+        "up": "uc:block/double_compressed_basalt_top",
+        "north": "uc:block/double_compressed_basalt",
+        "south": "uc:block/double_compressed_basalt",
+        "east": "uc:block/double_compressed_basalt",
+        "west": "uc:block/double_compressed_basalt"
+    }
+}

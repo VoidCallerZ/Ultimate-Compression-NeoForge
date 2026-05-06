@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "uc:compressed_basalt"
+        }
+    },
+    "result": {
+        "id": "uc:double_compressed_basalt",
+        "count": 1
+    }
+}

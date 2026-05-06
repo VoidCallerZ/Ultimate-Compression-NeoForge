@@ -41,7 +41,8 @@ STANDARD_MATERIALS = [
     # Vanilla blocks
     "stone", "cobblestone", "dirt", "sand", "gravel",
     "netherrack", "soul_sand", "soul_soil", "blackstone", "deepslate",
-    "calcite", "tuff", "obsidian",
+    "calcite", "tuff", "obsidian", "basalt", "glowstone", "magma_block", 
+    "quartz_block",
     # Stone variants
     "andesite", "diorite", "granite", "cobbled_deepslate",
     # Ore blocks
@@ -81,7 +82,7 @@ TOP_BOTTOM_MATERIALS = [
 LOG_MATERIALS = [
     "oak_log", "spruce_log", "birch_log", "jungle_log", "acacia_log",
     "dark_oak_log", "mangrove_log", "cherry_log", "bamboo_block", 
-    "crimson_stem", "warped_stem",
+    "crimson_stem", "warped_stem", "basalt",
 ]
 
 ALL_MATERIALS = STANDARD_MATERIALS + TOP_BOTTOM_MATERIALS + LOG_MATERIALS

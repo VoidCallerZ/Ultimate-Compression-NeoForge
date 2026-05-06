@@ -25,7 +25,7 @@ public class UCBlocks {
     private static final Set<String> LOG_MATERIALS = Set.of(
         "oak_log", "spruce_log", "birch_log", "jungle_log", "acacia_log",
         "dark_oak_log", "mangrove_log", "cherry_log", "bamboo_block",
-        "crimson_stem", "warped_stem"
+        "crimson_stem", "warped_stem", "basalt"
     );
 
     // -------------------------------------------------------------------------
@@ -33,11 +33,15 @@ public class UCBlocks {
     // Must match vanilla behaviour (sand, gravel, etc.)
     // -------------------------------------------------------------------------
     private static final Set<String> FALLING_MATERIALS = Set.of(
-        "sand", "gravel", "soul_sand"
+        "sand", "gravel", "soul_sand", "black_concrete_powder", "blue_concrete_powder", "brown_concrete_powder",
+        "cyan_concrete_powder", "gray_concrete_powder", "green_concrete_powder", "light_blue_concrete_powder", 
+        "light_gray_concrete_powder", "lime_concrete_powder", "magenta_concrete_powder", "orange_concrete_powder", 
+        "pink_concrete_powder", "red_concrete_powder", "white_concrete_powder", "yellow_concrete_powder", "purple_concrete_powder",
+        "red_sand"
     );
 
     private static final Set<String> NO_TOOL_REQUIRED = Set.of(
-        "dirt", "sand", "gravel", "soul_sand", "soul_soil", "netherrack",
+        "dirt", "sand", "gravel", "soul_sand", "soul_soil",
         "oak_log", "spruce_log", "birch_log", "jungle_log", "acacia_log",
         "dark_oak_log", "mangrove_log", "cherry_log", "bamboo_block",
         "crimson_stem", "warped_stem",
@@ -46,7 +50,12 @@ public class UCBlocks {
         "crimson_planks", "warped_planks",
         "white_wool", "orange_wool", "magenta_wool", "light_blue_wool", "yellow_wool",
         "lime_wool", "pink_wool", "gray_wool", "light_gray_wool", "cyan_wool",
-        "purple_wool", "blue_wool", "brown_wool", "green_wool", "red_wool", "black_wool"
+        "purple_wool", "blue_wool", "brown_wool", "green_wool", "red_wool", "black_wool",
+        "black_concrete_powder", "blue_concrete_powder", "brown_concrete_powder",
+        "cyan_concrete_powder", "gray_concrete_powder", "green_concrete_powder", "light_blue_concrete_powder", 
+        "light_gray_concrete_powder", "lime_concrete_powder", "magenta_concrete_powder", "orange_concrete_powder", 
+        "pink_concrete_powder", "red_concrete_powder", "white_concrete_powder", "yellow_concrete_powder", 
+        "purple_concrete_powder", "red_sand"
     );
 
     private static final Object[][] MATERIALS = {
@@ -65,6 +74,15 @@ public class UCBlocks {
         { "calcite",        MapColor.TERRACOTTA_WHITE, SoundType.CALCITE, 0.75f, 0.75f },
         { "tuff",           MapColor.TERRACOTTA_GRAY,  SoundType.TUFF,   1.5f,  6.0f },
         { "obsidian",       MapColor.COLOR_BLACK,   SoundType.STONE,    50.0f, 1200.0f },
+        { "andesite",       MapColor.STONE,         SoundType.STONE,    1.5f,  6.0f },
+        { "diorite",        MapColor.SNOW,          SoundType.STONE,    1.5f,  6.0f },
+        { "granite",        MapColor.COLOR_ORANGE,  SoundType.STONE,    1.5f,  6.0f },
+        { "red_sand",       MapColor.COLOR_ORANGE,  SoundType.SAND,     0.5f,  0.5f },
+        { "cobbled_deepslate", MapColor.DEEPSLATE,     SoundType.DEEPSLATE, 2.0f, 6.0f },
+        { "basalt",         MapColor.COLOR_BLACK,   SoundType.BASALT,   1.5f,  6.0f },
+        { "glowstone",      MapColor.COLOR_YELLOW,  SoundType.GLASS,    0.3f,  1.0f },
+        { "magma_block",    MapColor.COLOR_RED,     SoundType.STONE,    1.5f,  6.0f },
+        { "quartz_block",   MapColor.QUARTZ,       SoundType.STONE,    0.8f,  4.0f },
 
         // --- Ore blocks ---
         { "iron_block",     MapColor.METAL,         SoundType.METAL,    5.0f,  6.0f },
@@ -123,6 +141,42 @@ public class UCBlocks {
         { "green_wool",      MapColor.COLOR_GREEN,      SoundType.WOOL, 0.8f, 4.0f },
         { "red_wool",        MapColor.COLOR_RED,        SoundType.WOOL, 0.8f, 4.0f },
         { "black_wool",      MapColor.COLOR_BLACK,      SoundType.WOOL, 0.8f, 4.0f },
+
+        // --- Concerte ---
+        { "black_concrete",   MapColor.COLOR_BLACK,   SoundType.STONE, 1.8f, 6.0f },
+        { "blue_concrete",    MapColor.COLOR_BLUE,    SoundType.STONE, 1.8f, 6.0f },
+        { "brown_concrete",   MapColor.COLOR_BROWN,   SoundType.STONE, 1.8f, 6.0f },
+        { "cyan_concrete",    MapColor.COLOR_CYAN,    SoundType.STONE, 1.8f, 6.0f },
+        { "gray_concrete",    MapColor.COLOR_GRAY,    SoundType.STONE, 1.8f, 6.0f },
+        { "green_concrete",   MapColor.COLOR_GREEN,   SoundType.STONE, 1.8f, 6.0f },
+        { "light_blue_concrete", MapColor.COLOR_LIGHT_BLUE, SoundType.STONE, 1.8f, 6.0f },
+        { "light_gray_concrete", MapColor.COLOR_LIGHT_GRAY, SoundType.STONE, 1.8f, 6.0f },
+        { "lime_concrete",    MapColor.COLOR_LIGHT_GREEN, SoundType.STONE, 1.8f, 6.0f },
+        { "magenta_concrete", MapColor.COLOR_MAGENTA, SoundType.STONE, 1.8f, 6.0f },
+        { "orange_concrete",  MapColor.COLOR_ORANGE,  SoundType.STONE, 1.8f, 6.0f },
+        { "pink_concrete",    MapColor.COLOR_PINK,    SoundType.STONE, 1.8f, 6.0f },
+        { "red_concrete",     MapColor.COLOR_RED,     SoundType.STONE, 1.8f, 6.0f },
+        { "white_concrete",   MapColor.SNOW,         SoundType.STONE, 1.8f, 6.0f },
+        { "yellow_concrete",  MapColor.COLOR_YELLOW, SoundType.STONE, 1.8f, 6.0f },
+        { "purple_concrete",  MapColor.COLOR_PURPLE, SoundType.STONE, 1.8f, 6.0f },
+
+        // --- Concrete Powder ---
+        { "black_concrete_powder",   MapColor.COLOR_BLACK,   SoundType.GRAVEL, 0.5f, 0.5f },
+        { "blue_concrete_powder",    MapColor.COLOR_BLUE,    SoundType.GRAVEL, 0.5f, 0.5f },
+        { "brown_concrete_powder",   MapColor.COLOR_BROWN,   SoundType.GRAVEL, 0.5f, 0.5f },
+        { "cyan_concrete_powder",    MapColor.COLOR_CYAN,    SoundType.GRAVEL, 0.5f, 0.5f },
+        { "gray_concrete_powder",    MapColor.COLOR_GRAY,    SoundType.GRAVEL, 0.5f, 0.5f },
+        { "green_concrete_powder",   MapColor.COLOR_GREEN,   SoundType.GRAVEL, 0.5f, 0.5f },
+        { "light_blue_concrete_powder", MapColor.COLOR_LIGHT_BLUE, SoundType.GRAVEL, 0.5f, 0.5f },
+        { "light_gray_concrete_powder", MapColor.COLOR_LIGHT_GRAY, SoundType.GRAVEL, 0.5f, 0.5f },
+        { "lime_concrete_powder",    MapColor.COLOR_LIGHT_GREEN, SoundType.GRAVEL, 0.5f, 0.5f },
+        { "magenta_concrete_powder", MapColor.COLOR_MAGENTA, SoundType.GRAVEL, 0.5f, 0.5f },
+        { "orange_concrete_powder",  MapColor.COLOR_ORANGE,  SoundType.GRAVEL, 0.5f, 0.5f },
+        { "pink_concrete_powder",    MapColor.COLOR_PINK,    SoundType.GRAVEL, 0.5f, 0.5f },
+        { "red_concrete_powder",     MapColor.COLOR_RED,     SoundType.GRAVEL, 0.5f, 0.5f },
+        { "white_concrete_powder",   MapColor.SNOW,         SoundType.GRAVEL, 0.5f, 0.5f },
+        { "yellow_concrete_powder",  MapColor.COLOR_YELLOW, SoundType.GRAVEL, 0.5f, 0.5f },
+        { "purple_concrete_powder",  MapColor.COLOR_PURPLE, SoundType.GRAVEL, 0.5f, 0.5f }
     };
 
     static {
