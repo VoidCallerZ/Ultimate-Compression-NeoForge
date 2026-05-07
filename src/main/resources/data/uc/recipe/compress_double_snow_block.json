@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "uc:compressed_snow_block"
+        }
+    },
+    "result": {
+        "id": "uc:double_compressed_snow_block",
+        "count": 1
+    }
+}

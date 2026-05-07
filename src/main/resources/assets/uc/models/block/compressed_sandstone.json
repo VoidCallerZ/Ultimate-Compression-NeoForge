@@ -1,0 +1,12 @@
+{
+    "parent": "minecraft:block/cube",
+    "textures": {
+        "particle": "uc:block/compressed_sandstone",
+        "down": "uc:block/compressed_sandstone_top",
+        "up": "uc:block/compressed_sandstone_top",
+        "north": "uc:block/compressed_sandstone",
+        "south": "uc:block/compressed_sandstone",
+        "east": "uc:block/compressed_sandstone",
+        "west": "uc:block/compressed_sandstone"
+    }
+}

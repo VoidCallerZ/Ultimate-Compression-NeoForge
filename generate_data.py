@@ -73,10 +73,13 @@ STANDARD_MATERIALS = [
     "magenta_concrete", "brown_concrete", "light_blue_concrete", "lime_concrete",
     # Misc
     "red_sand",
+    # Natural blocks
+    "sandstone", "red_sandstone", "ice", "packed_ice", "blue_ice", "clay", 
+    "snow_block", "moss_block", "end_stone",
 ]
 
 TOP_BOTTOM_MATERIALS = [
-    
+    "sandstone", "red_sandstone",
 ]
 
 LOG_MATERIALS = [
@@ -164,7 +167,8 @@ NO_TOOL_MATS = {
     "purple_concrete_powder", "orange_concrete_powder", "cyan_concrete_powder",
     "light_gray_concrete_powder", "gray_concrete_powder", "pink_concrete_powder",
     "magenta_concrete_powder", "brown_concrete_powder", "light_blue_concrete_powder",
-    "lime_concrete_powder",
+    "lime_concrete_powder", "ice", "packed_ice", "blue_ice", "clay", 
+    "snow_block", "moss_block",
 }
 
 # Everything else that needs a tool defaults to needs_stone_tool:

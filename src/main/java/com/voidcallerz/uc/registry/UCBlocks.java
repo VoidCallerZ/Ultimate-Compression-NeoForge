@@ -55,7 +55,8 @@ public class UCBlocks {
         "cyan_concrete_powder", "gray_concrete_powder", "green_concrete_powder", "light_blue_concrete_powder", 
         "light_gray_concrete_powder", "lime_concrete_powder", "magenta_concrete_powder", "orange_concrete_powder", 
         "pink_concrete_powder", "red_concrete_powder", "white_concrete_powder", "yellow_concrete_powder", 
-        "purple_concrete_powder", "red_sand"
+        "purple_concrete_powder", "red_sand", "glowstone", "ice", "packed_ice", "blue_ice",
+        "clay", "snow_block", "moss_block"
     );
 
     private static final Object[][] MATERIALS = {
@@ -176,7 +177,18 @@ public class UCBlocks {
         { "red_concrete_powder",     MapColor.COLOR_RED,     SoundType.GRAVEL, 0.5f, 0.5f },
         { "white_concrete_powder",   MapColor.SNOW,         SoundType.GRAVEL, 0.5f, 0.5f },
         { "yellow_concrete_powder",  MapColor.COLOR_YELLOW, SoundType.GRAVEL, 0.5f, 0.5f },
-        { "purple_concrete_powder",  MapColor.COLOR_PURPLE, SoundType.GRAVEL, 0.5f, 0.5f }
+        { "purple_concrete_powder",  MapColor.COLOR_PURPLE, SoundType.GRAVEL, 0.5f, 0.5f },
+
+        // --- Natural Blocks ---
+        { "sandstone",      MapColor.SAND,          SoundType.STONE,    0.8f,  4.0f },
+        { "red_sandstone",  MapColor.COLOR_ORANGE,  SoundType.STONE,    0.8f,  4.0f },
+        { "ice",            MapColor.ICE,           SoundType.GLASS,    0.5f,  2.5f },
+        { "packed_ice",     MapColor.ICE,           SoundType.GLASS,    0.5f,  2.5f },
+        { "blue_ice",       MapColor.ICE,           SoundType.GLASS,    0.5f,  2.5f },
+        { "clay",          MapColor.COLOR_ORANGE,  SoundType.GRAVEL,   0.6f,  0.6f },
+        { "snow_block",     MapColor.SNOW,         SoundType.SNOW,     0.2f,  0.5f },
+        { "moss_block",     MapColor.COLOR_GREEN,      SoundType.GRASS,    0.8f,  4.0f },
+        { "end_stone",      MapColor.SAND,          SoundType.STONE,    3.0f, 9.0f },
     };
 
     static {

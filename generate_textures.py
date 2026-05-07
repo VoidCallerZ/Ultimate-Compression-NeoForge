@@ -75,6 +75,9 @@ MATERIALS = [
     "magenta_concrete", "brown_concrete", "light_blue_concrete", "lime_concrete",
     # Misc
     "red_sand",
+    # Natural blocks
+    "sandstone", "red_sandstone", "ice", "packed_ice", "blue_ice", "clay", 
+    "snow_block", "moss_block", "end_stone",
 ]
 
 TEXTURE_OVERRIDES = {
@@ -87,6 +90,7 @@ TEXTURE_OVERRIDES = {
     "basalt":       "basalt_side",
     "magma_block":   "magma",
     "quartz_block":  "quartz_block_side",
+    "snow_block":     "snow",
 }
 
 LOG_TOP_TEXTURES = {
@@ -104,6 +108,8 @@ LOG_TOP_TEXTURES = {
     "grass_block":  "grass_block_top",
     "basalt":       "basalt_top",
     "quartz_block": "quartz_block_top",
+    "sandstone":     "sandstone_top",
+    "red_sandstone": "red_sandstone_top",
 }
 
 COMPRESSED_ITEM_TEXTURES = {
