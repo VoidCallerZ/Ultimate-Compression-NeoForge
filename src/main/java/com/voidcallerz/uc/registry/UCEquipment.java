@@ -2,91 +2,68 @@ package com.voidcallerz.uc.registry;
 
 import com.voidcallerz.uc.ModConstants;
 import net.minecraft.world.item.*;
-import net.neoforged.neoforge.registries.DeferredHolder;
+import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
-/**
- * NeoForge 1.21.1:
- *   - DeferredHolder replaces RegistryObject
- *   - ArmorItem takes (Holder<ArmorMaterial>, ArmorItem.Type, Item.Properties)
- *     DeferredHolder implements Holder so it can be passed directly
- *   - Tool constructors take (Tier, Item.Properties) only
- *   - Durability set via Item.Properties.durability(type.getDurability(base))
- */
 public class UCEquipment {
 
-    public static final DeferredRegister<Item> ITEMS =
-        DeferredRegister.create(BuiltInRegistries.ITEM, ModConstants.MOD_ID);
+    public static final DeferredRegister.Items ITEMS =
+        DeferredRegister.createItems(ModConstants.MOD_ID);
 
-    public static final Map<String, DeferredHolder<Item, ? extends Item>> ALL_EQUIPMENT
+    public static final Map<String, DeferredItem<? extends Item>> ALL_EQUIPMENT
         = new LinkedHashMap<>();
 
-    // =========================================================================
-    // TOOL SETS
-    // =========================================================================
-
     private static final Object[][] TOOL_TIERS = {
-        { "wood",      UCToolTiers.COMPRESSED_WOOD      },
-        { "stone",     UCToolTiers.COMPRESSED_STONE     },
-        { "iron",      UCToolTiers.COMPRESSED_IRON      },
-        { "gold",      UCToolTiers.COMPRESSED_GOLD      },
-        { "diamond",   UCToolTiers.COMPRESSED_DIAMOND   },
-        { "netherite", UCToolTiers.COMPRESSED_NETHERITE },
+        { "wood",      UCToolTiers.COMPRESSED_WOOD,      5.0f, -3.2f },
+        { "stone",     UCToolTiers.COMPRESSED_STONE,     6.0f, -3.2f },
+        { "iron",      UCToolTiers.COMPRESSED_IRON,      7.0f, -3.1f },
+        { "gold",      UCToolTiers.COMPRESSED_GOLD,      5.0f, -3.2f },
+        { "diamond",   UCToolTiers.COMPRESSED_DIAMOND,   8.0f, -3.0f },
+        { "netherite", UCToolTiers.COMPRESSED_NETHERITE, 9.0f, -3.0f },
     };
 
     static {
         for (Object[] entry : TOOL_TIERS) {
-            String      mat  = (String)      entry[0];
-            UCToolTiers tier = (UCToolTiers) entry[1];
-            String      pre  = "compressed_" + mat;
+            String       mat      = (String)       entry[0];
+            ToolMaterial material = (ToolMaterial) entry[1];
+            float        axeDmg   = (float)        entry[2];
+            float        axeSpd   = (float)        entry[3];
+            String       pre      = "compressed_" + mat;
+            final float fd = axeDmg, fs = axeSpd;
 
-            reg(pre + "_sword",   () -> new SwordItem(tier,   new Item.Properties()));
-            reg(pre + "_pickaxe", () -> new PickaxeItem(tier, new Item.Properties()));
-            reg(pre + "_axe",     () -> new AxeItem(tier,     new Item.Properties()));
-            reg(pre + "_shovel",  () -> new ShovelItem(tier,  new Item.Properties()));
-            reg(pre + "_hoe",     () -> new HoeItem(tier,     new Item.Properties()));
+            // registerItem passes setId'd props into the factory
+            reg(pre + "_sword",   props -> new SwordItem(material, 3, -2.4f,   props));
+            reg(pre + "_pickaxe", props -> new PickaxeItem(material, 1, -2.8f, props));
+            reg(pre + "_axe",     props -> new AxeItem(material, fd, fs,       props));
+            reg(pre + "_shovel",  props -> new ShovelItem(material, 1.5f, -3.0f, props));
+            reg(pre + "_hoe",     props -> new HoeItem(material, 0, -3.0f,     props));
         }
-    }
 
-    // =========================================================================
-    // ARMOR SETS
-    // DeferredHolder<ArmorMaterial, ArmorMaterial> implements Holder<ArmorMaterial>
-    // so it can be passed directly to ArmorItem constructor
-    // =========================================================================
-
-    static {
         armorSet("iron",      UCArmorMaterials.COMPRESSED_IRON);
         armorSet("gold",      UCArmorMaterials.COMPRESSED_GOLD);
         armorSet("diamond",   UCArmorMaterials.COMPRESSED_DIAMOND);
         armorSet("netherite", UCArmorMaterials.COMPRESSED_NETHERITE);
     }
 
-    private static void armorSet(String mat,
-            DeferredHolder<ArmorMaterial, ArmorMaterial> materialHolder) {
+    private static void armorSet(String mat, ArmorMaterial material) {
         String pre = "compressed_" + mat;
-        for (ArmorItem.Type type : new ArmorItem.Type[]{
-                ArmorItem.Type.HELMET, ArmorItem.Type.CHESTPLATE,
-                ArmorItem.Type.LEGGINGS, ArmorItem.Type.BOOTS}) {
-            final ArmorItem.Type t = type;
-            reg(pre + "_" + type.getName(), () -> new ArmorItem(
-                materialHolder,
-                t,
-                new Item.Properties().durability(
-                    UCArmorMaterials.getDurability(materialHolder, t))
-            ));
+        for (ArmorType type : new ArmorType[]{
+                ArmorType.HELMET, ArmorType.CHESTPLATE,
+                ArmorType.LEGGINGS, ArmorType.BOOTS}) {
+            final ArmorType t = type;
+            reg(pre + "_" + type.getName(),
+                props -> new ArmorItem(material, t, props));
         }
     }
 
-    // =========================================================================
-
-    @SuppressWarnings("unchecked")
-    private static void reg(String name, Supplier<? extends Item> supplier) {
-        ALL_EQUIPMENT.put(name,
-            (DeferredHolder<Item, ? extends Item>) ITEMS.register(name, supplier));
+    private static void reg(String name, Function<Item.Properties, ? extends Item> factory) {
+        ALL_EQUIPMENT.put(name, ITEMS.registerItem(name, factory));
     }
 }

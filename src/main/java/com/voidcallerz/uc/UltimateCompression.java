@@ -26,9 +26,6 @@ public class UltimateCompression {
         UCOres.BLOCKS.register(modEventBus);
         UCOres.ITEMS.register(modEventBus);
 
-        // Armor materials must be registered before equipment items
-        UCArmorMaterials.ARMOR_MATERIALS.register(modEventBus);
-
         // Tools and armor items
         UCEquipment.ITEMS.register(modEventBus);
 

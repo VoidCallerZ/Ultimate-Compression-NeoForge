@@ -17,35 +17,25 @@ import java.util.Map;
 
 public class UCOres {
 
-    public static final DeferredRegister<Block> BLOCKS =
-        DeferredRegister.create(net.minecraft.core.registries.BuiltInRegistries.BLOCK, ModConstants.MOD_ID);
+    public static final DeferredRegister.Blocks BLOCKS =
+        DeferredRegister.createBlocks(ModConstants.MOD_ID);
 
-    public static final DeferredRegister<Item> ITEMS =
-        DeferredRegister.create(net.minecraft.core.registries.BuiltInRegistries.ITEM, ModConstants.MOD_ID);
+    public static final DeferredRegister.Items ITEMS =
+        DeferredRegister.createItems(ModConstants.MOD_ID);
 
     public static final Map<String, DeferredHolder<Block, Block>> ALL_ORE_BLOCKS = new LinkedHashMap<>();
 
-    // -------------------------------------------------------------------------
-    // Ore definitions
-    // Each entry: registry_name, MapColor, xpMin, xpMax
-    //
-    // All ores use deepslate sound/hardness since they only spawn at
-    // deepslate depth. Harder to mine than vanilla deepslate ores.
-    //
-    // xpMin/xpMax = 0 for raw-drop ores (iron, gold, copper) since
-    // those give no XP in vanilla. Gem ores get 3x vanilla XP.
-    // -------------------------------------------------------------------------
     private static final Object[][] ORES = {
-        { "compressed_coal_ore",     MapColor.DEEPSLATE, 0,  2 },
-        { "compressed_iron_ore",     MapColor.DEEPSLATE, 0,  0 },
-        { "compressed_gold_ore",     MapColor.DEEPSLATE, 0,  0 },
-        { "compressed_copper_ore",   MapColor.DEEPSLATE, 0,  0 },
-        { "compressed_diamond_ore",  MapColor.DEEPSLATE, 9, 21 },  // 3x vanilla (3-7)
-        { "compressed_emerald_ore",  MapColor.DEEPSLATE, 9, 21 },
-        { "compressed_lapis_ore",    MapColor.DEEPSLATE, 6, 15 },  // 3x vanilla (2-5)
-        { "compressed_redstone_ore", MapColor.DEEPSLATE, 3, 15 },  // 3x vanilla (1-5)
-        { "compressed_nether_quartz_ore", MapColor.NETHER, 2, 5 },
-        { "compressed_nether_gold_ore",   MapColor.NETHER, 1, 2 },
+        { "compressed_coal_ore",          MapColor.DEEPSLATE, 0,  2 },
+        { "compressed_iron_ore",          MapColor.DEEPSLATE, 0,  0 },
+        { "compressed_gold_ore",          MapColor.DEEPSLATE, 0,  0 },
+        { "compressed_copper_ore",        MapColor.DEEPSLATE, 0,  0 },
+        { "compressed_diamond_ore",       MapColor.DEEPSLATE, 9, 21 },
+        { "compressed_emerald_ore",       MapColor.DEEPSLATE, 9, 21 },
+        { "compressed_lapis_ore",         MapColor.DEEPSLATE, 6, 15 },
+        { "compressed_redstone_ore",      MapColor.DEEPSLATE, 3, 15 },
+        { "compressed_nether_quartz_ore", MapColor.NETHER,    2,  5 },
+        { "compressed_nether_gold_ore",   MapColor.NETHER,    1,  2 },
     };
 
     static {
@@ -55,28 +45,30 @@ public class UCOres {
             int      xpMin = (int)      ore[2];
             int      xpMax = (int)      ore[3];
 
-            BlockBehaviour.Properties props = BlockBehaviour.Properties.of()
-                .mapColor(color)
-                .sound(SoundType.DEEPSLATE)
-                .strength(4.5f, 3.0f)
-                .requiresCorrectToolForDrops();
+            boolean isNether = name.contains("nether");
+            // Build props used as the base — registerBlock passes setId'd props into factory
+            BlockBehaviour.Properties baseProps = isNether
+                ? BlockBehaviour.Properties.of()
+                    .mapColor(color).sound(SoundType.NETHERRACK)
+                    .strength(3.0f, 3.0f)
+                : BlockBehaviour.Properties.of()
+                    .mapColor(color).sound(SoundType.DEEPSLATE)
+                    .strength(4.5f, 3.0f).requiresCorrectToolForDrops();
 
             DeferredHolder<Block, Block> block;
-
             if (xpMin == 0 && xpMax == 0) {
-                block = BLOCKS.register(name, () -> new Block(props));
+                block = BLOCKS.registerBlock(name, Block::new, baseProps);
             } else {
-                final int finalMin = xpMin;
-                final int finalMax = xpMax;
-                block = BLOCKS.register(name,
-                    () -> new DropExperienceBlock(UniformInt.of(finalMin, finalMax), props));
+                final int fMin = xpMin, fMax = xpMax;
+                block = BLOCKS.registerBlock(name,
+                    props -> new DropExperienceBlock(UniformInt.of(fMin, fMax), props),
+                    baseProps);
             }
 
             ALL_ORE_BLOCKS.put(name, block);
 
-            // Register corresponding BlockItem
-            DeferredHolder<Block, Block> finalBlock = block;
-            ITEMS.register(name, () -> new BlockItem(finalBlock.get(), new Item.Properties()));
+            // registerSimpleBlockItem handles setId automatically for the item
+            ITEMS.registerSimpleBlockItem(name, block);
         }
     }
 }

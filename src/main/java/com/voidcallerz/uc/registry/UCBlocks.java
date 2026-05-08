@@ -17,8 +17,8 @@ import java.util.Set;
 
 public class UCBlocks {
 
-    public static final DeferredRegister<Block> BLOCKS =
-        DeferredRegister.create(net.minecraft.core.registries.BuiltInRegistries.BLOCK, ModConstants.MOD_ID);
+    public static final DeferredRegister.Blocks BLOCKS =
+        DeferredRegister.createBlocks(ModConstants.MOD_ID);
 
     public static final Map<String, DeferredHolder<Block, Block>> ALL_BLOCKS = new LinkedHashMap<>();
 
@@ -28,10 +28,6 @@ public class UCBlocks {
         "crimson_stem", "warped_stem", "basalt"
     );
 
-    // -------------------------------------------------------------------------
-    // Falling materials — registered as FallingBlock so they obey gravity.
-    // Must match vanilla behaviour (sand, gravel, etc.)
-    // -------------------------------------------------------------------------
     private static final Set<String> FALLING_MATERIALS = Set.of(
         "sand", "gravel", "soul_sand", "black_concrete_powder", "blue_concrete_powder", "brown_concrete_powder",
         "cyan_concrete_powder", "gray_concrete_powder", "green_concrete_powder", "light_blue_concrete_powder", 
@@ -143,7 +139,7 @@ public class UCBlocks {
         { "red_wool",        MapColor.COLOR_RED,        SoundType.WOOL, 0.8f, 4.0f },
         { "black_wool",      MapColor.COLOR_BLACK,      SoundType.WOOL, 0.8f, 4.0f },
 
-        // --- Concerte ---
+        // --- Concrete ---
         { "black_concrete",   MapColor.COLOR_BLACK,   SoundType.STONE, 1.8f, 6.0f },
         { "blue_concrete",    MapColor.COLOR_BLUE,    SoundType.STONE, 1.8f, 6.0f },
         { "brown_concrete",   MapColor.COLOR_BROWN,   SoundType.STONE, 1.8f, 6.0f },
@@ -191,6 +187,14 @@ public class UCBlocks {
         { "end_stone",      MapColor.SAND,          SoundType.STONE,    3.0f, 9.0f },
     };
 
+    private static BlockBehaviour.Properties buildProps(
+            MapColor color, SoundType sound,
+            float hardness, float resistance, boolean needsTool) {
+        BlockBehaviour.Properties props = BlockBehaviour.Properties.of()
+            .mapColor(color).sound(sound).strength(hardness, resistance);
+        return needsTool ? props.requiresCorrectToolForDrops() : props;
+    }
+
     static {
         for (Object[] mat : MATERIALS) {
             String baseName  = (String)    mat[0];
@@ -207,30 +211,30 @@ public class UCBlocks {
                 String registryName  = ModConstants.TIER_PREFIXES[tier] + "_" + baseName;
                 float tierMultiplier = (float) Math.pow(2, tier);
 
-                // Build base properties first
-                BlockBehaviour.Properties baseProps = BlockBehaviour.Properties.of()
-                    .mapColor(color)
-                    .sound(sound)
-                    .strength(hardness * tierMultiplier, resistance * tierMultiplier);
-
-                // Use a separate final variable for the lambda — Java requires
-                // variables captured in lambdas to be effectively final,
-                // so we can't reassign baseProps directly.
-                final BlockBehaviour.Properties finalProps = needsTool
-                    ? baseProps.requiresCorrectToolForDrops()
-                    : baseProps;
+                // In 1.21.2, registerBlock() automatically calls setId() on properties
+                final float      fMult       = tierMultiplier;
+                final boolean    fNeedsTool  = needsTool;
+                final boolean    fIsLog      = isLog;
+                final boolean    fIsFalling  = isFalling;
+                final MapColor   fColor      = color;
+                final SoundType  fSound      = sound;
+                final float      fHardness   = hardness;
+                final float      fResistance = resistance;
 
                 DeferredHolder<Block, Block> block;
 
-                if (isLog) {
-                    block = BLOCKS.register(registryName,
-                        () -> new RotatedPillarBlock(finalProps));
-                } else if (isFalling) {
-                    block = BLOCKS.register(registryName,
-                        () -> new UCFallingBlock(finalProps));
+                if (fIsLog) {
+                    block = BLOCKS.registerBlock(registryName,
+                        RotatedPillarBlock::new,
+                        buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool));
+                } else if (fIsFalling) {
+                    block = BLOCKS.registerBlock(registryName,
+                        UCFallingBlock::new,
+                        buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool));
                 } else {
-                    block = BLOCKS.register(registryName,
-                        () -> new Block(finalProps));
+                    block = BLOCKS.registerBlock(registryName,
+                        Block::new,
+                        buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool));
                 }
 
                 ALL_BLOCKS.put(registryName, block);
