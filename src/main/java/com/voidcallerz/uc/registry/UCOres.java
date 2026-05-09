@@ -9,8 +9,6 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -50,7 +48,7 @@ public class UCOres {
             BlockBehaviour.Properties baseProps = isNether
                 ? BlockBehaviour.Properties.of()
                     .mapColor(color).sound(SoundType.NETHERRACK)
-                    .strength(3.0f, 3.0f)
+                    .strength(3.0f, 3.0f).requiresCorrectToolForDrops()
                 : BlockBehaviour.Properties.of()
                     .mapColor(color).sound(SoundType.DEEPSLATE)
                     .strength(4.5f, 3.0f).requiresCorrectToolForDrops();

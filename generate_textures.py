@@ -1,5 +1,5 @@
 """
-Ultimate Compression — Texture Generator v5
+Ultimate Compression — Texture Generator v6
 =============================================
 Extracts vanilla textures from your Minecraft jar, applies per-tier
 darkening + saturation + border effects, and writes them into your mod's
@@ -7,6 +7,7 @@ resource folder. Also generates a preview sheet for blocks and items.
 
 Changelog:
   v5 — Added tool item textures and armor layer textures.
+  v6 — Added natural blocks, nether ores, basalt/magma/quartz overrides, equipment JSONs.
 
 Requirements:
     pip install Pillow
@@ -15,6 +16,7 @@ Usage:
     python generate_textures.py
 """
 
+import json
 import os
 import sys
 import zipfile
@@ -76,38 +78,38 @@ MATERIALS = [
     # Misc
     "red_sand",
     # Natural blocks
-    "sandstone", "red_sandstone", "ice", "packed_ice", "blue_ice", "clay", 
+    "sandstone", "red_sandstone", "ice", "packed_ice", "blue_ice", "clay",
     "snow_block", "moss_block", "end_stone",
 ]
 
 TEXTURE_OVERRIDES = {
-    "grass_block":   "grass_block_side",
-    "bamboo_block":  "bamboo_planks",
-    "crimson_stem":  "crimson_stem",
-    "warped_stem":   "warped_stem",
+    "grass_block":    "grass_block_side",
+    "bamboo_block":   "bamboo_planks",
+    "crimson_stem":   "crimson_stem",
+    "warped_stem":    "warped_stem",
     "crimson_planks": "crimson_planks",
     "warped_planks":  "warped_planks",
-    "basalt":       "basalt_side",
-    "magma_block":   "magma",
-    "quartz_block":  "quartz_block_side",
+    "basalt":         "basalt_side",
+    "magma_block":    "magma",
+    "quartz_block":   "quartz_block_side",
     "snow_block":     "snow",
 }
 
 LOG_TOP_TEXTURES = {
-    "oak_log":      "oak_log_top",
-    "spruce_log":   "spruce_log_top",
-    "birch_log":    "birch_log_top",
-    "jungle_log":   "jungle_log_top",
-    "acacia_log":   "acacia_log_top",
-    "dark_oak_log": "dark_oak_log_top",
-    "mangrove_log": "mangrove_log_top",
-    "cherry_log":   "cherry_log_top",
-    "bamboo_block": "bamboo_planks",
-    "crimson_stem": "crimson_stem_top",
-    "warped_stem":  "warped_stem_top",
-    "grass_block":  "grass_block_top",
-    "basalt":       "basalt_top",
-    "quartz_block": "quartz_block_top",
+    "oak_log":       "oak_log_top",
+    "spruce_log":    "spruce_log_top",
+    "birch_log":     "birch_log_top",
+    "jungle_log":    "jungle_log_top",
+    "acacia_log":    "acacia_log_top",
+    "dark_oak_log":  "dark_oak_log_top",
+    "mangrove_log":  "mangrove_log_top",
+    "cherry_log":    "cherry_log_top",
+    "bamboo_block":  "bamboo_planks",
+    "crimson_stem":  "crimson_stem_top",
+    "warped_stem":   "warped_stem_top",
+    "grass_block":   "grass_block_top",
+    "basalt":        "basalt_top",
+    "quartz_block":  "quartz_block_top",
     "sandstone":     "sandstone_top",
     "red_sandstone": "red_sandstone_top",
 }
@@ -207,6 +209,7 @@ COMPRESSED_ORE_TEXTURES = {
     "compressed_lapis_ore":    "deepslate_lapis_ore",
     "compressed_redstone_ore": "deepslate_redstone_ore",
 }
+
 
 # -------------------------------------------------------------------------
 # NETHER ORE TEXTURES — use vanilla nether ore textures as base
@@ -509,6 +512,31 @@ def write_armor_layer_textures(armor_layer_textures, resource_path):
         print(f"    v {name}")
 
 
+
+def write_equipment_jsons(resource_path):
+    """
+    Generate equipment model JSON files for 1.21.2+ armor.
+    Goes in assets/<modid>/models/equipment/<name>.json
+    """
+    out_base = resource_path / "assets" / MOD_ID / "models" / "equipment"
+    out_base.mkdir(parents=True, exist_ok=True)
+
+    for mat in ARMOR_LAYER_SOURCES:
+        name = f"compressed_{mat}"
+        data = {
+            "layers": {
+                "humanoid": [
+                    { "texture": f"{MOD_ID}:{name}" }
+                ],
+                "humanoid_leggings": [
+                    { "texture": f"{MOD_ID}:{name}" }
+                ]
+            }
+        }
+        (out_base / f"{name}.json").write_text(json.dumps(data, indent=4))
+        print(f"    v {name}.json")
+
+
 def write_ore_textures(ore_textures, resource_path):
     """Write compressed ore textures to textures/block/."""
     out_base = resource_path / "assets" / MOD_ID / "textures" / "block"
@@ -606,7 +634,7 @@ def generate_preview(side_textures, top_textures, item_textures, out_path):
 
 def main():
     print("=" * 60)
-    print("  Ultimate Compression -- Texture Generator v5")
+    print("  Ultimate Compression -- Texture Generator v6")
     print("=" * 60)
 
     print("\n[1/4] Locating paths...")
@@ -653,6 +681,8 @@ def main():
         write_armor_item_textures(armor_item_textures, resource_path)
         print("\n  Writing armor layer textures...")
         write_armor_layer_textures(armor_layer_textures, resource_path)
+        print("\n  Writing equipment JSONs (1.21.2+ armor)...")
+        write_equipment_jsons(resource_path)
         print("\n  Writing ore textures...")
         write_ore_textures(ore_textures, resource_path)
         print("\n  Writing compression catalyst texture...")
