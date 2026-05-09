@@ -7,7 +7,7 @@ resource folder. Also generates a preview sheet for blocks and items.
 
 Changelog:
   v5 — Added tool item textures and armor layer textures.
-  v6 — Added automatic equipment JSON generation for 1.21.2+ armor.
+  v6 — Added natural blocks, nether ores, basalt/magma/quartz overrides, equipment JSONs.
 
 Requirements:
     pip install Pillow
@@ -41,7 +41,8 @@ MATERIALS = [
     # Vanilla blocks
     "stone", "cobblestone", "dirt", "grass_block", "sand", "gravel",
     "netherrack", "soul_sand", "soul_soil", "blackstone", "deepslate",
-    "calcite", "tuff", "obsidian",
+    "calcite", "tuff", "obsidian", "basalt", "glowstone", "magma_block",
+    "quartz_block",
     # Stone variants
     "andesite", "diorite", "granite", "cobbled_deepslate",
     # Ore blocks
@@ -76,30 +77,41 @@ MATERIALS = [
     "magenta_concrete", "brown_concrete", "light_blue_concrete", "lime_concrete",
     # Misc
     "red_sand",
+    # Natural blocks
+    "sandstone", "red_sandstone", "ice", "packed_ice", "blue_ice", "clay",
+    "snow_block", "moss_block", "end_stone",
 ]
 
 TEXTURE_OVERRIDES = {
-    "grass_block":   "grass_block_side",
-    "bamboo_block":  "bamboo_planks",
-    "crimson_stem":  "crimson_stem",
-    "warped_stem":   "warped_stem",
+    "grass_block":    "grass_block_side",
+    "bamboo_block":   "bamboo_planks",
+    "crimson_stem":   "crimson_stem",
+    "warped_stem":    "warped_stem",
     "crimson_planks": "crimson_planks",
     "warped_planks":  "warped_planks",
+    "basalt":         "basalt_side",
+    "magma_block":    "magma",
+    "quartz_block":   "quartz_block_side",
+    "snow_block":     "snow",
 }
 
 LOG_TOP_TEXTURES = {
-    "oak_log":      "oak_log_top",
-    "spruce_log":   "spruce_log_top",
-    "birch_log":    "birch_log_top",
-    "jungle_log":   "jungle_log_top",
-    "acacia_log":   "acacia_log_top",
-    "dark_oak_log": "dark_oak_log_top",
-    "mangrove_log": "mangrove_log_top",
-    "cherry_log":   "cherry_log_top",
-    "bamboo_block": "bamboo_planks",
-    "crimson_stem": "crimson_stem_top",
-    "warped_stem":  "warped_stem_top",
-    "grass_block":  "grass_block_top",
+    "oak_log":       "oak_log_top",
+    "spruce_log":    "spruce_log_top",
+    "birch_log":     "birch_log_top",
+    "jungle_log":    "jungle_log_top",
+    "acacia_log":    "acacia_log_top",
+    "dark_oak_log":  "dark_oak_log_top",
+    "mangrove_log":  "mangrove_log_top",
+    "cherry_log":    "cherry_log_top",
+    "bamboo_block":  "bamboo_planks",
+    "crimson_stem":  "crimson_stem_top",
+    "warped_stem":   "warped_stem_top",
+    "grass_block":   "grass_block_top",
+    "basalt":        "basalt_top",
+    "quartz_block":  "quartz_block_top",
+    "sandstone":     "sandstone_top",
+    "red_sandstone": "red_sandstone_top",
 }
 
 COMPRESSED_ITEM_TEXTURES = {
@@ -196,6 +208,16 @@ COMPRESSED_ORE_TEXTURES = {
     "compressed_emerald_ore":  "deepslate_emerald_ore",
     "compressed_lapis_ore":    "deepslate_lapis_ore",
     "compressed_redstone_ore": "deepslate_redstone_ore",
+}
+
+
+# -------------------------------------------------------------------------
+# NETHER ORE TEXTURES — use vanilla nether ore textures as base
+# (netherrack background is already baked into the vanilla texture)
+# -------------------------------------------------------------------------
+COMPRESSED_NETHER_ORE_TEXTURES = {
+    "compressed_nether_quartz_ore": "nether_quartz_ore",
+    "compressed_nether_gold_ore":   "nether_gold_ore",
 }
 
 # -------------------------------------------------------------------------
@@ -334,6 +356,16 @@ def extract_all_textures(jar_path):
                     print(f"    x compressed_{mat}_layer_{layer} -- not found in jar")
 
 
+        print("\n  Nether ore textures:")
+        nether_ore_extra = {}
+        for comp_name, vanilla_stem in COMPRESSED_NETHER_ORE_TEXTURES.items():
+            img = extract_from_jar(jar, "block", vanilla_stem)
+            if img:
+                nether_ore_extra[comp_name] = img
+                print(f"    v {comp_name}")
+            else:
+                print(f"    x {comp_name} -- not found, skipping")
+
         print("\n  Ore textures:")
         ore_textures = {}
         for comp_name, vanilla_stem in COMPRESSED_ORE_TEXTURES.items():
@@ -347,6 +379,8 @@ def extract_all_textures(jar_path):
         print("\n  Compression catalyst base textures:")
         catalyst_iron = extract_from_jar(jar, "item", "iron_ingot")
         catalyst_redstone = extract_from_jar(jar, "item", "redstone")
+
+        ore_textures.update(nether_ore_extra)
 
     return side_textures, top_textures, item_textures, tool_textures, armor_item_textures, armor_layer_textures, ore_textures, catalyst_iron, catalyst_redstone
 
@@ -482,14 +516,7 @@ def write_armor_layer_textures(armor_layer_textures, resource_path):
 def write_equipment_jsons(resource_path):
     """
     Generate equipment model JSON files for 1.21.2+ armor.
-    These go in assets/<modid>/equipment/<name>.json and tell the game
-    which textures to use when rendering armor on the player body.
-
-    The ResourceLocation passed to ArmorMaterial in UCArmorMaterials.java
-    must match the filename here (e.g. "compressed_iron" -> compressed_iron.json).
-
-    Each JSON references the humanoid and humanoid_leggings texture paths
-    written by write_armor_layer_textures().
+    Goes in assets/<modid>/models/equipment/<name>.json
     """
     out_base = resource_path / "assets" / MOD_ID / "models" / "equipment"
     out_base.mkdir(parents=True, exist_ok=True)
@@ -506,8 +533,7 @@ def write_equipment_jsons(resource_path):
                 ]
             }
         }
-        out_path = out_base / f"{name}.json"
-        out_path.write_text(json.dumps(data, indent=4))
+        (out_base / f"{name}.json").write_text(json.dumps(data, indent=4))
         print(f"    v {name}.json")
 
 
@@ -636,12 +662,11 @@ def main():
     armor_item_files  = len(armor_item_textures)
     armor_layer_files = len(armor_layer_textures)
     ore_files         = len(ore_textures)
-    equipment_files   = len(ARMOR_LAYER_SOURCES)
     total             = block_files + item_files + tool_files + armor_item_files + armor_layer_files + ore_files
 
     print(f"\n[4/4] Ready to write {total} textures total:")
     print(f"  {block_files} block  |  {item_files} item  |  {tool_files} tool  "
-          f"|  {armor_item_files} armor item  |  {armor_layer_files} armor layer  |  {ore_files} ore  |  {equipment_files} equipment JSON")
+          f"|  {armor_item_files} armor item  |  {armor_layer_files} armor layer  |  {ore_files} ore")
 
     answer = input("\n  Check texture_preview.png first.\n  Write textures now? [y/N]: ").strip().lower()
 
@@ -656,7 +681,7 @@ def main():
         write_armor_item_textures(armor_item_textures, resource_path)
         print("\n  Writing armor layer textures...")
         write_armor_layer_textures(armor_layer_textures, resource_path)
-        print("\n  Writing equipment JSONs (1.21.2+ armor model definitions)...")
+        print("\n  Writing equipment JSONs (1.21.2+ armor)...")
         write_equipment_jsons(resource_path)
         print("\n  Writing ore textures...")
         write_ore_textures(ore_textures, resource_path)
