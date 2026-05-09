@@ -50,7 +50,7 @@ public class UCOres {
             BlockBehaviour.Properties baseProps = isNether
                 ? BlockBehaviour.Properties.of()
                     .mapColor(color).sound(SoundType.NETHERRACK)
-                    .strength(3.0f, 3.0f)
+                    .strength(3.0f, 3.0f).requiresCorrectToolForDrops()
                 : BlockBehaviour.Properties.of()
                     .mapColor(color).sound(SoundType.DEEPSLATE)
                     .strength(4.5f, 3.0f).requiresCorrectToolForDrops();
