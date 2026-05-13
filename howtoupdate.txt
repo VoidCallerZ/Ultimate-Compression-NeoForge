@@ -1,0 +1,9 @@
+xcopy "F:\Minecraft Mods\UC 1.21.x NeoForge" "F:\Minecraft Mods\UC 1.21.x NeoForge" /E /I /H
+cd "F:\Minecraft Mods\UC 1.21.x NeoForge"
+git checkout -b 1.21.x
+.\gradlew --stop
+Remove .gradle folder
+Update neoforge.mods.toml, gradle-wrapper.properties, build.gradle, gradle.properties, settings.gradle
+.\gradlew --refresh-dependencies
+.\gradlew runClient
+Ctrl + Shift + P: Java: Clean Java Language Server Workspace
