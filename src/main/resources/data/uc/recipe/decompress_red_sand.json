@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_red_sand"
-        }
+        "uc:compressed_red_sand"
     ],
     "result": {
         "id": "minecraft:red_sand",

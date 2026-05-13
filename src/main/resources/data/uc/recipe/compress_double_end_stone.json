@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_end_stone"
-        }
+        "#": "uc:compressed_end_stone"
     },
     "result": {
         "id": "uc:double_compressed_end_stone",

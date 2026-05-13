@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_pink_wool"
-        }
+        "uc:compressed_pink_wool"
     ],
     "result": {
         "id": "minecraft:pink_wool",

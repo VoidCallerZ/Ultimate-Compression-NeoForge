@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_spruce_log"
-        }
+        "#": "uc:compressed_spruce_log"
     },
     "result": {
         "id": "uc:double_compressed_spruce_log",

@@ -1,0 +1,9 @@
+{
+    "type": "neoforge:add_features",
+    "biomes": "#minecraft:is_nether",
+    "features": [
+        "uc:compressed_nether_quartz_ore",
+        "uc:compressed_nether_gold_ore"
+    ],
+    "step": "underground_ores"
+}

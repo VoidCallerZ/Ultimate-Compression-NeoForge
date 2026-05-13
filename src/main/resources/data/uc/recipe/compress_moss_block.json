@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:moss_block"
-        }
+        "#": "minecraft:moss_block"
     },
     "result": {
         "id": "uc:compressed_moss_block",

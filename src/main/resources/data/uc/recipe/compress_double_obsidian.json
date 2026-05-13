@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_obsidian"
-        }
+        "#": "uc:compressed_obsidian"
     },
     "result": {
         "id": "uc:double_compressed_obsidian",

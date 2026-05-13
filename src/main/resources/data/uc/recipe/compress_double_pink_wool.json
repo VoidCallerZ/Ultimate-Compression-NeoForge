@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_pink_wool"
-        }
+        "#": "uc:compressed_pink_wool"
     },
     "result": {
         "id": "uc:double_compressed_pink_wool",

@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:white_concrete_powder"
-        }
+        "#": "minecraft:white_concrete_powder"
     },
     "result": {
         "id": "uc:compressed_white_concrete_powder",

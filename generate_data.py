@@ -28,6 +28,13 @@ import json
 from pathlib import Path
 
 # =============================================================================
+# VERSION FLAG
+# Set to "1.21.4" for 1.21.4+ (uses assets/<mod>/items/ client item JSONs)
+# Set to "1.21.1" for 1.21.1/1.21.2/1.21.3 (uses assets/<mod>/models/item/)
+# =============================================================================
+MC_VERSION = "1.21.4"  # Change to "1.21.4" for 1.21.4+
+
+# =============================================================================
 # CONFIGURATION
 # =============================================================================
 
@@ -316,33 +323,46 @@ def generate_block_models(resource_path: Path) -> int:
 # =============================================================================
 
 def generate_item_models_blocks(resource_path: Path) -> int:
-    out_base = resource_path / "assets" / MOD_ID / "models" / "item"
+    # Always write the model JSON (needed by both old and new systems)
+    model_base = resource_path / "assets" / MOD_ID / "models" / "item"
     count = 0
     for material in ALL_MATERIALS:
         for tier_index in range(len(TIER_PREFIXES)):
             name = registry_name(material, tier_index)
-            write_json(out_base / f"{name}.json", {
+            write_json(model_base / f"{name}.json", {
                 "parent": f"{MOD_ID}:block/{name}"
             })
+            if MC_VERSION == "1.21.4":
+                # 1.21.4+ also needs assets/<mod>/items/<name>.json
+                items_base = resource_path / "assets" / MOD_ID / "items"
+                write_json(items_base / f"{name}.json", {
+                    "model": {
+                        "type": "minecraft:model",
+                        "model": f"{MOD_ID}:block/{name}"
+                    }
+                })
             count += 1
     return count
 
 
 def generate_item_models_standalone(resource_path: Path) -> int:
-    out_base = resource_path / "assets" / MOD_ID / "models" / "item"
+    model_base = resource_path / "assets" / MOD_ID / "models" / "item"
     count = 0
-    for entry in COMPRESSED_ITEMS:
-        name = entry["name"]
-        write_json(out_base / f"{name}.json", {
+    all_items = [e["name"] for e in COMPRESSED_ITEMS] + ["compression_catalyst"]
+    for name in all_items:
+        write_json(model_base / f"{name}.json", {
             "parent": "minecraft:item/generated",
             "textures": { "layer0": f"{MOD_ID}:item/{name}" }
         })
+        if MC_VERSION == "1.21.4":
+            items_base = resource_path / "assets" / MOD_ID / "items"
+            write_json(items_base / f"{name}.json", {
+                "model": {
+                    "type": "minecraft:model",
+                    "model": f"{MOD_ID}:item/{name}"
+                }
+            })
         count += 1
-    write_json(out_base / "compression_catalyst.json", {
-        "parent": "minecraft:item/generated",
-        "textures": { "layer0": f"{MOD_ID}:item/compression_catalyst" }
-    })
-    count += 1
     return count
 
 # =============================================================================
@@ -353,7 +373,7 @@ def make_standard_compress(input_id: str, output_id: str) -> dict:
     return {
         "type": "minecraft:crafting_shaped",
         "pattern": ["###", "###", "###"],
-        "key": { "#": { "item": input_id } },
+        "key": { "#": input_id },
         "result": { "id": output_id, "count": 1 }
     }
 
@@ -363,8 +383,8 @@ def make_compressor_compress(input_id: str, output_id: str) -> dict:
         "type": "minecraft:crafting_shaped",
         "pattern": ["###", "#C#", "###"],
         "key": {
-            "#": { "item": input_id },
-            "C": { "item": COMPRESSOR_ID }
+            "#": input_id,
+            "C": COMPRESSOR_ID
         },
         "result": { "id": output_id, "count": 1 }
     }
@@ -373,7 +393,7 @@ def make_compressor_compress(input_id: str, output_id: str) -> dict:
 def make_decompress(input_id: str, output_id: str, count: int = 9) -> dict:
     return {
         "type": "minecraft:crafting_shapeless",
-        "ingredients": [{ "item": input_id }],
+        "ingredients": [ input_id ],
         "result": { "id": output_id, "count": count }
     }
 
@@ -383,8 +403,8 @@ def make_compressor_recipe() -> dict:
         "type": "minecraft:crafting_shaped",
         "pattern": ["RRR", "RIR", "RRR"],
         "key": {
-            "R": { "item": "minecraft:redstone" },
-            "I": { "item": "minecraft:iron_ingot" }
+            "R": "minecraft:redstone",
+            "I": "minecraft:iron_ingot"
         },
         "result": { "id": COMPRESSOR_ID, "count": 1 }
     }
@@ -606,9 +626,9 @@ def generate_equipment_recipes(resource_path: Path) -> int:
             name    = f"compressed_{mat}_{tool}"
             pattern = TOOL_PATTERNS[tool]
             # Build key — tools use # for material and S for stick
-            key = {"#": {"item": mat_id}}
+            key = {"#": mat_id}
             if any("S" in row for row in pattern):
-                key["S"] = {"item": stick_id}
+                key["S"] = stick_id
             write_json(out_base / f"{name}.json", {
                 "type": "minecraft:crafting_shaped",
                 "pattern": pattern,
@@ -625,7 +645,7 @@ def generate_equipment_recipes(resource_path: Path) -> int:
             write_json(out_base / f"{name}.json", {
                 "type": "minecraft:crafting_shaped",
                 "pattern": pattern,
-                "key": {"#": {"item": mat_id}},
+                "key": {"#": mat_id},
                 "result": {"id": f"{MOD_ID}:{name}", "count": 1}
             })
             count += 1
@@ -634,23 +654,40 @@ def generate_equipment_recipes(resource_path: Path) -> int:
 
 
 def generate_equipment_item_models(resource_path: Path) -> int:
-    out_base = resource_path / "assets" / MOD_ID / "models" / "item"
+    model_base = resource_path / "assets" / MOD_ID / "models" / "item"
     count = 0
     for mat, _ in EQUIPMENT_MATERIALS_TOOLS:
         for tool, _ in TOOL_TYPES:
             name = f"compressed_{mat}_{tool}"
-            write_json(out_base / f"{name}.json", {
-                "parent": "minecraft:item/handheld",
+            parent = "minecraft:item/handheld"
+            write_json(model_base / f"{name}.json", {
+                "parent": parent,
                 "textures": {"layer0": f"{MOD_ID}:item/{name}"}
             })
+            if MC_VERSION == "1.21.4":
+                items_base = resource_path / "assets" / MOD_ID / "items"
+                write_json(items_base / f"{name}.json", {
+                    "model": {
+                        "type": "minecraft:model",
+                        "model": f"{MOD_ID}:item/{name}"
+                    }
+                })
             count += 1
     for mat, _ in EQUIPMENT_MATERIALS_ARMOR:
         for piece, _ in ARMOR_TYPES:
             name = f"compressed_{mat}_{piece}"
-            write_json(out_base / f"{name}.json", {
+            write_json(model_base / f"{name}.json", {
                 "parent": "minecraft:item/generated",
                 "textures": {"layer0": f"{MOD_ID}:item/{name}"}
             })
+            if MC_VERSION == "1.21.4":
+                items_base = resource_path / "assets" / MOD_ID / "items"
+                write_json(items_base / f"{name}.json", {
+                    "model": {
+                        "type": "minecraft:model",
+                        "model": f"{MOD_ID}:item/{name}"
+                    }
+                })
             count += 1
     return count
 

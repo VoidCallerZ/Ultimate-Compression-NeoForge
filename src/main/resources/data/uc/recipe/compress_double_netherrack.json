@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_netherrack"
-        }
+        "#": "uc:compressed_netherrack"
     },
     "result": {
         "id": "uc:double_compressed_netherrack",

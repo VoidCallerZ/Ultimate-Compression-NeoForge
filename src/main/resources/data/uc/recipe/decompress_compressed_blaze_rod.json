@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_blaze_rod"
-        }
+        "uc:compressed_blaze_rod"
     ],
     "result": {
         "id": "minecraft:blaze_rod",

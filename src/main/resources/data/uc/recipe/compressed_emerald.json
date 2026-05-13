@@ -6,12 +6,8 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:emerald"
-        },
-        "C": {
-            "item": "uc:compression_catalyst"
-        }
+        "#": "minecraft:emerald",
+        "C": "uc:compression_catalyst"
     },
     "result": {
         "id": "uc:compressed_emerald",

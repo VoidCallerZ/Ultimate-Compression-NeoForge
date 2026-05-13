@@ -6,12 +6,8 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:raw_gold"
-        },
-        "C": {
-            "item": "uc:compression_catalyst"
-        }
+        "#": "minecraft:raw_gold",
+        "C": "uc:compression_catalyst"
     },
     "result": {
         "id": "uc:compressed_raw_gold",

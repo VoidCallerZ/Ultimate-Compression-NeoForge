@@ -6,12 +6,8 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:gold_ingot"
-        },
-        "C": {
-            "item": "uc:compression_catalyst"
-        }
+        "#": "minecraft:gold_ingot",
+        "C": "uc:compression_catalyst"
     },
     "result": {
         "id": "uc:compressed_gold_ingot",

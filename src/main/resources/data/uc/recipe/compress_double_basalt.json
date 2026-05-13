@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_basalt"
-        }
+        "#": "uc:compressed_basalt"
     },
     "result": {
         "id": "uc:double_compressed_basalt",

@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_red_concrete"
-        }
+        "#": "uc:compressed_red_concrete"
     },
     "result": {
         "id": "uc:double_compressed_red_concrete",

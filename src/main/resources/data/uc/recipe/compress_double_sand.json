@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_sand"
-        }
+        "#": "uc:compressed_sand"
     },
     "result": {
         "id": "uc:double_compressed_sand",

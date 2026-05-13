@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_end_stone"
-        }
+        "uc:compressed_end_stone"
     ],
     "result": {
         "id": "minecraft:end_stone",

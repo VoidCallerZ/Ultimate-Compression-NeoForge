@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_lime_wool"
-        }
+        "#": "uc:compressed_lime_wool"
     },
     "result": {
         "id": "uc:double_compressed_lime_wool",

@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_diamond"
-        }
+        "#": "uc:compressed_diamond"
     },
     "result": {
         "id": "uc:compressed_diamond_chestplate",

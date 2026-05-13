@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:warped_stem"
-        }
+        "#": "minecraft:warped_stem"
     },
     "result": {
         "id": "uc:compressed_warped_stem",

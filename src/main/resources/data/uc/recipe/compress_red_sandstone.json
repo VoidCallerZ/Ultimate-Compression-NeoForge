@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:red_sandstone"
-        }
+        "#": "minecraft:red_sandstone"
     },
     "result": {
         "id": "uc:compressed_red_sandstone",

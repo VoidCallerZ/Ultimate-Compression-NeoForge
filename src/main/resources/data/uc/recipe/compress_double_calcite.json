@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_calcite"
-        }
+        "#": "uc:compressed_calcite"
     },
     "result": {
         "id": "uc:double_compressed_calcite",

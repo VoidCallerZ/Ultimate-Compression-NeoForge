@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:birch_log"
-        }
+        "#": "minecraft:birch_log"
     },
     "result": {
         "id": "uc:compressed_birch_log",

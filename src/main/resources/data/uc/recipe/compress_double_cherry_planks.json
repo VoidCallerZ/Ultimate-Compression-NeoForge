@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_cherry_planks"
-        }
+        "#": "uc:compressed_cherry_planks"
     },
     "result": {
         "id": "uc:double_compressed_cherry_planks",

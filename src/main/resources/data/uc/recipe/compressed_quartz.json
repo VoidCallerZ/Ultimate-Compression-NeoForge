@@ -6,12 +6,8 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:quartz"
-        },
-        "C": {
-            "item": "uc:compression_catalyst"
-        }
+        "#": "minecraft:quartz",
+        "C": "uc:compression_catalyst"
     },
     "result": {
         "id": "uc:compressed_quartz",

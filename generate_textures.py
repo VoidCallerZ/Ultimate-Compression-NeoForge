@@ -513,12 +513,22 @@ def write_armor_layer_textures(armor_layer_textures, resource_path):
 
 
 
+# Set to "1.21.4" for 1.21.4+ (equipment JSONs go in assets/<mod>/equipment/)
+# Set to "1.21.1" for 1.21.2/1.21.3 (equipment JSONs go in assets/<mod>/models/equipment/)
+EQUIPMENT_MC_VERSION = "1.21.4"  # Change to "1.21.4" for 1.21.4+
+
+
 def write_equipment_jsons(resource_path):
     """
-    Generate equipment model JSON files for 1.21.2+ armor.
-    Goes in assets/<modid>/models/equipment/<name>.json
+    Generate equipment client info JSON files for armor rendering.
+    1.21.2/1.21.3: assets/<modid>/models/equipment/<name>.json
+    1.21.4+:       assets/<modid>/equipment/<name>.json
+    The JSON format is the same — only the folder changed.
     """
-    out_base = resource_path / "assets" / MOD_ID / "models" / "equipment"
+    if EQUIPMENT_MC_VERSION == "1.21.4":
+        out_base = resource_path / "assets" / MOD_ID / "equipment"
+    else:
+        out_base = resource_path / "assets" / MOD_ID / "models" / "equipment"
     out_base.mkdir(parents=True, exist_ok=True)
 
     for mat in ARMOR_LAYER_SOURCES:
@@ -534,7 +544,7 @@ def write_equipment_jsons(resource_path):
             }
         }
         (out_base / f"{name}.json").write_text(json.dumps(data, indent=4))
-        print(f"    v {name}.json")
+        print(f"    v {name}.json -> {out_base.name}/")
 
 
 def write_ore_textures(ore_textures, resource_path):

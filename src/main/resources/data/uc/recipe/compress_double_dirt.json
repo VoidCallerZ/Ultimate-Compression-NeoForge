@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_dirt"
-        }
+        "#": "uc:compressed_dirt"
     },
     "result": {
         "id": "uc:double_compressed_dirt",
