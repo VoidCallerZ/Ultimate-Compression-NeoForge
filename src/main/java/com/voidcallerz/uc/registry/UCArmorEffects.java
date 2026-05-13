@@ -3,6 +3,7 @@ package com.voidcallerz.uc.registry;
 import com.voidcallerz.uc.ModConstants;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -26,22 +27,22 @@ public class UCArmorEffects {
     private static final List<ArmorSet> ARMOR_SETS = List.of(
 
         new ArmorSet("compressed_iron", List.of(
-            effect(MobEffects.DAMAGE_BOOST, 0)          // Strength I
+            effect(MobEffects.STRENGTH, 0)          // Strength I
         )),
 
         new ArmorSet("compressed_gold", List.of(
-            effect(MobEffects.MOVEMENT_SPEED, 1)        // Speed II
+            effect(MobEffects.SPEED, 1)        // Speed II
         )),
 
         new ArmorSet("compressed_diamond", List.of(
-            effect(MobEffects.DAMAGE_BOOST,    1),      // Strength II
-            effect(MobEffects.DAMAGE_RESISTANCE,  0)    // Resistance I
+            effect(MobEffects.STRENGTH,    1),      // Strength II
+            effect(MobEffects.RESISTANCE,  0)    // Resistance I
         )),
 
         new ArmorSet("compressed_netherite", List.of(
-            effect(MobEffects.DAMAGE_BOOST,   1),       // Strength II
+            effect(MobEffects.STRENGTH,   1),       // Strength II
             effect(MobEffects.REGENERATION, 0),         // Regeneration I
-            effect(MobEffects.DAMAGE_RESISTANCE, 1)     // Resistance II
+            effect(MobEffects.RESISTANCE, 1)     // Resistance II
         ))
     );
 
@@ -78,10 +79,10 @@ public class UCArmorEffects {
     }
 
     private static boolean isWearingFullSet(Player player, String prefix) {
-        return isPiece(player.getInventory().getArmor(3), prefix + "_helmet")
-            && isPiece(player.getInventory().getArmor(2), prefix + "_chestplate")
-            && isPiece(player.getInventory().getArmor(1), prefix + "_leggings")
-            && isPiece(player.getInventory().getArmor(0), prefix + "_boots");
+        return isPiece(player.getItemBySlot(EquipmentSlot.HEAD), prefix + "_helmet")
+            && isPiece(player.getItemBySlot(EquipmentSlot.CHEST), prefix + "_chestplate")
+            && isPiece(player.getItemBySlot(EquipmentSlot.LEGS), prefix + "_leggings")
+            && isPiece(player.getItemBySlot(EquipmentSlot.FEET), prefix + "_boots");
     }
 
     private static boolean isPiece(ItemStack stack, String registryName) {

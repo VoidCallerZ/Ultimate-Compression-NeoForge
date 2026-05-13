@@ -38,11 +38,11 @@ public class UCEquipment {
             final float fd = axeDmg, fs = axeSpd;
 
             // registerItem passes setId'd props into the factory
-            reg(pre + "_sword",   props -> new SwordItem(material, 3, -2.4f,   props));
-            reg(pre + "_pickaxe", props -> new PickaxeItem(material, 1, -2.8f, props));
-            reg(pre + "_axe",     props -> new AxeItem(material, fd, fs,       props));
+            reg(pre + "_sword",   props -> new Item(props.sword(material, 3, -2.4f)));
+            reg(pre + "_pickaxe", props -> new Item(props.pickaxe(material, 1, -2.8f)));
+            reg(pre + "_axe",     props -> new AxeItem(material, fd, fs,         props));
             reg(pre + "_shovel",  props -> new ShovelItem(material, 1.5f, -3.0f, props));
-            reg(pre + "_hoe",     props -> new HoeItem(material, 0, -3.0f,     props));
+            reg(pre + "_hoe",     props -> new HoeItem(material, 0, -3.0f,       props));
         }
 
         armorSet("iron",      UCArmorMaterials.COMPRESSED_IRON);
@@ -58,7 +58,7 @@ public class UCEquipment {
                 ArmorType.LEGGINGS, ArmorType.BOOTS}) {
             final ArmorType t = type;
             reg(pre + "_" + type.getName(),
-                props -> new ArmorItem(material, t, props));
+                props -> new Item(props.humanoidArmor(material, t)));
         }
     }
 
