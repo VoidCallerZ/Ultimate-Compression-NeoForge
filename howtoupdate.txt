@@ -1,5 +1,5 @@
 xcopy "F:\Minecraft Mods\NeoForge\UC 1.21.x NeoForge" "F:\Minecraft Mods\NeoForge\UC 1.21.x NeoForge" /E /I /H
-cd "F:\Minecraft Mods\UC 1.21.x NeoForge"
+cd "F:\Minecraft Mods\NeoForge\UC 1.21.x NeoForge"
 git checkout -b 1.21.x
 .\gradlew --stop
 Remove .gradle folder
