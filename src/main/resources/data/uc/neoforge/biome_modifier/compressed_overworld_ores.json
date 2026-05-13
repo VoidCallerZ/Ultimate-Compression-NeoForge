@@ -1,0 +1,15 @@
+{
+    "type": "neoforge:add_features",
+    "biomes": "#minecraft:is_overworld",
+    "features": [
+        "uc:compressed_coal_ore",
+        "uc:compressed_iron_ore",
+        "uc:compressed_gold_ore",
+        "uc:compressed_copper_ore",
+        "uc:compressed_diamond_ore",
+        "uc:compressed_emerald_ore",
+        "uc:compressed_lapis_ore",
+        "uc:compressed_redstone_ore"
+    ],
+    "step": "underground_ores"
+}
