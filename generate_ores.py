@@ -72,7 +72,7 @@ ORES = [
         "vanilla_drop":     "raw_gold",
         "compressed_drop":  "compressed_raw_gold",
         "fortune_bonus":    True,
-        "vein_size":        2,
+        "vein_size":        3,
         "veins_per_chunk":  1,
         "min_y":            -64,
         "max_y":            -32,
@@ -94,7 +94,7 @@ ORES = [
         "vanilla_drop":     "diamond",
         "compressed_drop":  "compressed_diamond",
         "fortune_bonus":    True,
-        "vein_size":        1,
+        "vein_size":        3,
         "veins_per_chunk":  1,
         "min_y":            -64,
         "max_y":            -48,
@@ -105,7 +105,7 @@ ORES = [
         "vanilla_drop":     "emerald",
         "compressed_drop":  "compressed_emerald",
         "fortune_bonus":    True,
-        "vein_size":        1,
+        "vein_size":        3,
         "veins_per_chunk":  1,
         "min_y":            -64,
         "max_y":            -32,
@@ -116,7 +116,7 @@ ORES = [
         "vanilla_drop":     "lapis_lazuli",
         "compressed_drop":  "compressed_lapis",
         "fortune_bonus":    True,
-        "vein_size":        2,
+        "vein_size":        3,
         "veins_per_chunk":  1,
         "min_y":            -64,
         "max_y":            -32,
@@ -127,7 +127,7 @@ ORES = [
         "vanilla_drop":     "redstone",
         "compressed_drop":  "compressed_redstone",
         "fortune_bonus":    True,
-        "vein_size":        2,
+        "vein_size":        3,
         "veins_per_chunk":  2,
         "min_y":            -64,
         "max_y":            -32,
@@ -140,7 +140,7 @@ ORES = [
         "compressed_drop":  "compressed_quartz",
         "fortune_bonus":    True,
         "vein_size":        3,
-        "veins_per_chunk":  3,
+        "veins_per_chunk":  4,
         "min_y":            10,
         "max_y":            90,
         "nether":           True,
@@ -152,8 +152,8 @@ ORES = [
         "vanilla_drop":     "gold_nugget",
         "compressed_drop":  "compressed_gold_nugget",
         "fortune_bonus":    True,
-        "vein_size":        5,
-        "veins_per_chunk":  10,
+        "vein_size":        3,
+        "veins_per_chunk":  3,
         "min_y":            10,
         "max_y":            117,
         "nether":           True,
@@ -292,20 +292,51 @@ def generate_placed_features(resource_path: Path) -> int:
 LOADER = "neoforge"
 
 def generate_biome_modifiers(resource_path: Path) -> int:
+    """
+    For NeoForge, combines all ores into 2 biome modifier files
+    (one overworld, one nether) to avoid the silent 4-ore limit in 1.21.2+.
+    For Forge, generates one file per ore as required.
+    """
     out_base = resource_path / "data" / MOD_ID / LOADER / "biome_modifier"
     count = 0
-    for ore in ORES:
-        name      = ore["name"]
-        is_nether = ore.get("nether", False)
-        biome_tag = "#minecraft:is_nether" if is_nether else "#minecraft:is_overworld"
-        data = {
-            "type": f"{LOADER}:add_features",
-            "biomes": biome_tag,
-            "features": f"{MOD_ID}:{name}",
-            "step": "underground_ores"
-        }
-        write_json(out_base / f"{name}.json", data)
-        count += 1
+
+    if LOADER == "neoforge":
+        overworld = [f"{MOD_ID}:{ore['name']}" for ore in ORES
+                     if not ore.get("nether", False)]
+        nether    = [f"{MOD_ID}:{ore['name']}" for ore in ORES
+                     if ore.get("nether", False)]
+
+        if overworld:
+            write_json(out_base / "compressed_overworld_ores.json", {
+                "type": "neoforge:add_features",
+                "biomes": "#minecraft:is_overworld",
+                "features": overworld,
+                "step": "underground_ores"
+            })
+            count += 1
+
+        if nether:
+            write_json(out_base / "compressed_nether_ores.json", {
+                "type": "neoforge:add_features",
+                "biomes": "#minecraft:is_nether",
+                "features": nether,
+                "step": "underground_ores"
+            })
+            count += 1
+    else:
+        # Forge: one file per ore
+        for ore in ORES:
+            name      = ore["name"]
+            is_nether = ore.get("nether", False)
+            biome_tag = "#minecraft:is_nether" if is_nether else "#minecraft:is_overworld"
+            write_json(out_base / f"{name}.json", {
+                "type": f"{LOADER}:add_features",
+                "biomes": biome_tag,
+                "features": f"{MOD_ID}:{name}",
+                "step": "underground_ores"
+            })
+            count += 1
+
     return count
 
 # =============================================================================
