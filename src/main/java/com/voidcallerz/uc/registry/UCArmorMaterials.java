@@ -2,7 +2,7 @@ package com.voidcallerz.uc.registry;
 
 import com.voidcallerz.uc.ModConstants;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.equipment.EquipmentAssets;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
@@ -24,7 +24,7 @@ public class UCArmorMaterials {
         SoundEvents.ARMOR_EQUIP_IRON, 1.0f, 0.0f,
         ItemTags.REPAIRS_IRON_ARMOR,
         ResourceKey.create(EquipmentAssets.ROOT_ID,
-            ResourceLocation.fromNamespaceAndPath(ModConstants.MOD_ID, "compressed_iron"))
+            Identifier.fromNamespaceAndPath(ModConstants.MOD_ID, "compressed_iron"))
     );
 
     public static final ArmorMaterial COMPRESSED_GOLD = new ArmorMaterial(
@@ -32,7 +32,7 @@ public class UCArmorMaterials {
         SoundEvents.ARMOR_EQUIP_GOLD, 0.0f, 0.0f,
         ItemTags.REPAIRS_GOLD_ARMOR,
         ResourceKey.create(EquipmentAssets.ROOT_ID,
-            ResourceLocation.fromNamespaceAndPath(ModConstants.MOD_ID, "compressed_gold"))
+            Identifier.fromNamespaceAndPath(ModConstants.MOD_ID, "compressed_gold"))
     );
 
     public static final ArmorMaterial COMPRESSED_DIAMOND = new ArmorMaterial(
@@ -40,7 +40,7 @@ public class UCArmorMaterials {
         SoundEvents.ARMOR_EQUIP_DIAMOND, 3.0f, 0.0f,
         ItemTags.REPAIRS_DIAMOND_ARMOR,
         ResourceKey.create(EquipmentAssets.ROOT_ID,
-            ResourceLocation.fromNamespaceAndPath(ModConstants.MOD_ID, "compressed_diamond"))
+            Identifier.fromNamespaceAndPath(ModConstants.MOD_ID, "compressed_diamond"))
     );
 
     public static final ArmorMaterial COMPRESSED_NETHERITE = new ArmorMaterial(
@@ -48,7 +48,7 @@ public class UCArmorMaterials {
         SoundEvents.ARMOR_EQUIP_NETHERITE, 4.0f, 0.2f,
         ItemTags.REPAIRS_NETHERITE_ARMOR,
         ResourceKey.create(EquipmentAssets.ROOT_ID,
-            ResourceLocation.fromNamespaceAndPath(ModConstants.MOD_ID, "compressed_netherite"))
+            Identifier.fromNamespaceAndPath(ModConstants.MOD_ID, "compressed_netherite"))
     );
 
     private static Map<ArmorType, Integer> defenseMap(
