@@ -25,7 +25,7 @@ public class UCBlocks {
     private static final Set<String> LOG_MATERIALS = Set.of(
         "oak_log", "spruce_log", "birch_log", "jungle_log", "acacia_log",
         "dark_oak_log", "mangrove_log", "cherry_log", "bamboo_block",
-        "crimson_stem", "warped_stem", "basalt"
+        "crimson_stem", "warped_stem", "basalt", "pale_oak_log"
     );
 
     private static final Set<String> FALLING_MATERIALS = Set.of(
@@ -52,7 +52,15 @@ public class UCBlocks {
         "light_gray_concrete_powder", "lime_concrete_powder", "magenta_concrete_powder", "orange_concrete_powder", 
         "pink_concrete_powder", "red_concrete_powder", "white_concrete_powder", "yellow_concrete_powder", 
         "purple_concrete_powder", "red_sand", "glowstone", "ice", "packed_ice", "blue_ice",
-        "clay", "snow_block", "moss_block"
+        "clay", "snow_block", "moss_block", "pale_moss_block", "pale_oak_log", "pale_oak_planks", "resin_block",
+        "oak_leaves", "spruce_leaves", "birch_leaves", "jungle_leaves", "acacia_leaves",
+        "dark_oak_leaves", "mangrove_leaves", "cherry_leaves", "pale_oak_leaves", "azalea_leaves", "flowering_azalea_leaves"
+    );
+
+    public static final Set<String> LEAVES_MATERIALS = Set.of(
+        "oak_leaves", "spruce_leaves", "birch_leaves", "jungle_leaves", "acacia_leaves",
+        "dark_oak_leaves", "mangrove_leaves", "cherry_leaves", "pale_oak_leaves",
+        "azalea_leaves", "flowering_azalea_leaves"
     );
 
     private static final Object[][] MATERIALS = {
@@ -185,6 +193,25 @@ public class UCBlocks {
         { "snow_block",     MapColor.SNOW,         SoundType.SNOW,     0.2f,  0.5f },
         { "moss_block",     MapColor.COLOR_GREEN,      SoundType.GRASS,    0.8f,  4.0f },
         { "end_stone",      MapColor.SAND,          SoundType.STONE,    3.0f, 9.0f },
+
+        // --- Leaves ---
+        { "oak_leaves",     MapColor.COLOR_GREEN,   SoundType.GRASS,    0.2f, 0.2f },
+        { "spruce_leaves",  MapColor.COLOR_GREEN,   SoundType.GRASS,    0.2f, 0.2f },
+        { "birch_leaves",   MapColor.COLOR_GREEN,   SoundType.GRASS,    0.2f, 0.2f },
+        { "jungle_leaves",  MapColor.COLOR_GREEN,   SoundType.GRASS,    0.2f, 0.2f },
+        { "acacia_leaves",  MapColor.COLOR_GREEN,   SoundType.GRASS,    0.2f, 0.2f },
+        { "dark_oak_leaves",MapColor.COLOR_GREEN,   SoundType.GRASS,    0.2f, 0.2f },
+        { "mangrove_leaves",MapColor.COLOR_GREEN,   SoundType.GRASS,    0.2f, 0.2f },
+        { "cherry_leaves",  MapColor.TERRACOTTA_WHITE, SoundType.CHERRY_LEAVES, 0.2f, 0.2f },
+        { "pale_oak_leaves",  MapColor.COLOR_LIGHT_GREEN, SoundType.GRASS, 0.2f, 0.2f },
+        { "azalea_leaves",  MapColor.COLOR_GREEN,   SoundType.GRASS,    0.2f, 0.2f },
+        { "flowering_azalea_leaves", MapColor.COLOR_GREEN, SoundType.GRASS, 0.2f, 0.2f },
+
+        // --- New in 1.21.4 ---
+        { "pale_moss_block", MapColor.COLOR_LIGHT_GREEN, SoundType.GRASS, 0.8f, 4.0f },
+        { "pale_oak_log", MapColor.COLOR_LIGHT_GREEN, SoundType.WOOD, 2.0f, 2.0f },
+        { "pale_oak_planks", MapColor.COLOR_LIGHT_GREEN, SoundType.WOOD, 2.0f, 3.0f },
+        { "resin_block", MapColor.COLOR_YELLOW, SoundType.STONE, 1.5f, 6.0f }
     };
 
     private static BlockBehaviour.Properties buildProps(
@@ -206,6 +233,7 @@ public class UCBlocks {
             boolean isLog     = LOG_MATERIALS.contains(baseName);
             boolean isFalling = FALLING_MATERIALS.contains(baseName);
             boolean needsTool = !NO_TOOL_REQUIRED.contains(baseName);
+            boolean isLeaves  = LEAVES_MATERIALS.contains(baseName);
 
             for (int tier = 0; tier < ModConstants.TIER_COUNT; tier++) {
                 String registryName  = ModConstants.TIER_PREFIXES[tier] + "_" + baseName;
@@ -216,6 +244,7 @@ public class UCBlocks {
                 final boolean    fNeedsTool  = needsTool;
                 final boolean    fIsLog      = isLog;
                 final boolean    fIsFalling  = isFalling;
+                final boolean    fIsLeaves   = isLeaves;
                 final MapColor   fColor      = color;
                 final SoundType  fSound      = sound;
                 final float      fHardness   = hardness;
@@ -231,6 +260,10 @@ public class UCBlocks {
                     block = BLOCKS.registerBlock(registryName,
                         UCFallingBlock::new,
                         buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool));
+                } else if (fIsLeaves) {
+                    block = BLOCKS.registerBlock(registryName,
+                        Block::new,
+                        buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool).noOcclusion());
                 } else {
                     block = BLOCKS.registerBlock(registryName,
                         Block::new,

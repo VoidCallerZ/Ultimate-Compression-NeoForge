@@ -83,6 +83,12 @@ STANDARD_MATERIALS = [
     # Natural blocks
     "sandstone", "red_sandstone", "ice", "packed_ice", "blue_ice", "clay", 
     "snow_block", "moss_block", "end_stone",
+    # Leaves
+    "oak_leaves", "spruce_leaves", "birch_leaves", "jungle_leaves", "acacia_leaves",
+    "dark_oak_leaves", "mangrove_leaves", "cherry_leaves", "pale_oak_leaves", 
+    "azalea_leaves", "flowering_azalea_leaves",
+    # New in 1.21.4
+    "pale_moss_block", "pale_oak_log", "pale_oak_planks", "resin_block",
 ]
 
 TOP_BOTTOM_MATERIALS = [
@@ -92,8 +98,15 @@ TOP_BOTTOM_MATERIALS = [
 LOG_MATERIALS = [
     "oak_log", "spruce_log", "birch_log", "jungle_log", "acacia_log",
     "dark_oak_log", "mangrove_log", "cherry_log", "bamboo_block", 
-    "crimson_stem", "warped_stem", "basalt",
+    "crimson_stem", "warped_stem", "basalt", "pale_oak_log",
 ]
+
+# Leaves need cutout_mipped render type and biome tint
+LEAVES_MATERIALS = {
+    "oak_leaves", "spruce_leaves", "birch_leaves", "jungle_leaves", "acacia_leaves",
+    "dark_oak_leaves", "mangrove_leaves", "cherry_leaves", "pale_oak_leaves",
+    "azalea_leaves", "flowering_azalea_leaves",
+}
 
 ALL_MATERIALS = STANDARD_MATERIALS + TOP_BOTTOM_MATERIALS + LOG_MATERIALS
 
@@ -104,7 +117,7 @@ VANILLA_CONFLICTS = {
     "iron_ingot", "gold_ingot", "copper_ingot", "diamond", "emerald",
     "lapis_lazuli", "redstone", "coal", "netherite_ingot",
     "iron_nugget", "gold_nugget", "quartz", "bone", "string",
-    "raw_iron", "raw_gold", "raw_copper",
+    "raw_iron", "raw_gold", "raw_copper", "resin_clump",
 }
 
 COMPRESSED_ITEMS = [
@@ -131,6 +144,7 @@ COMPRESSED_ITEMS = [
     { "name": "compressed_gold_nugget",     "base": "gold_nugget",     "burn": 0 },
     { "name": "compressed_coal",            "base": "coal",            "burn": 14400 },
     { "name": "compressed_blaze_rod",       "base": "blaze_rod",       "burn": 11200 },
+    { "name": "compressed_resin_clump",     "base": "resin_clump",     "burn": 0 },
 ]
 
 LOWERCASE_WORDS = {"a", "an", "the", "of", "in", "on", "at", "and", "or"}
@@ -175,7 +189,8 @@ NO_TOOL_MATS = {
     "light_gray_concrete_powder", "gray_concrete_powder", "pink_concrete_powder",
     "magenta_concrete_powder", "brown_concrete_powder", "light_blue_concrete_powder",
     "lime_concrete_powder", "ice", "packed_ice", "blue_ice", "clay", 
-    "snow_block", "moss_block",
+    "snow_block", "moss_block", "pale_moss_block", "pale_oak_log", 
+    "pale_oak_planks", "resin_block",
 }
 
 # Everything else that needs a tool defaults to needs_stone_tool:
@@ -281,10 +296,17 @@ def generate_block_models(resource_path: Path) -> int:
     for material in STANDARD_MATERIALS:
         for tier_index in range(len(TIER_PREFIXES)):
             name = registry_name(material, tier_index)
-            write_json(out_base / f"{name}.json", {
-                "parent": "minecraft:block/cube_all",
-                "textures": { "all": f"{MOD_ID}:block/{name}" }
-            })
+            if material in LEAVES_MATERIALS:
+                write_json(out_base / f"{name}.json", {
+                    "render_type": "minecraft:cutout_mipped",
+                    "parent": "minecraft:block/leaves",
+                    "textures": { "all": f"{MOD_ID}:block/{name}" }
+                })
+            else:
+                write_json(out_base / f"{name}.json", {
+                    "parent": "minecraft:block/cube_all",
+                    "textures": { "all": f"{MOD_ID}:block/{name}" }
+                })
             count += 1
     for material in TOP_BOTTOM_MATERIALS:
         for tier_index in range(len(TIER_PREFIXES)):
@@ -335,12 +357,28 @@ def generate_item_models_blocks(resource_path: Path) -> int:
             if MC_VERSION == "1.21.4":
                 # 1.21.4+ also needs assets/<mod>/items/<name>.json
                 items_base = resource_path / "assets" / MOD_ID / "items"
-                write_json(items_base / f"{name}.json", {
-                    "model": {
-                        "type": "minecraft:model",
-                        "model": f"{MOD_ID}:block/{name}"
-                    }
-                })
+                if material in LEAVES_MATERIALS:
+                    # Match vanilla oak_leaves format exactly:
+                    # constant tint with default foliage green (-12012264 signed = 0xFF4E9A18)
+                    write_json(items_base / f"{name}.json", {
+                        "model": {
+                            "type": "minecraft:model",
+                            "model": f"{MOD_ID}:block/{name}",
+                            "tints": [
+                                {
+                                    "type": "minecraft:constant",
+                                    "value": -12012264
+                                }
+                            ]
+                        }
+                    })
+                else:
+                    write_json(items_base / f"{name}.json", {
+                        "model": {
+                            "type": "minecraft:model",
+                            "model": f"{MOD_ID}:block/{name}"
+                        }
+                    })
             count += 1
     return count
 
