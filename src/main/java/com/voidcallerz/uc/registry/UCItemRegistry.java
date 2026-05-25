@@ -47,6 +47,7 @@ public class UCItemRegistry {
         { "compressed_gold_nugget"     },
         { "compressed_coal"            },
         { "compressed_blaze_rod"       },
+        { "compressed_resin_clump"     },
     };
 
     static {

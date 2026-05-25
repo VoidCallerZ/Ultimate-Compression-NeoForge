@@ -1,0 +1,12 @@
+{
+    "model": {
+        "type": "minecraft:model",
+        "model": "uc:block/double_compressed_spruce_leaves",
+        "tints": [
+            {
+                "type": "minecraft:constant",
+                "value": -12012264
+            }
+        ]
+    }
+}

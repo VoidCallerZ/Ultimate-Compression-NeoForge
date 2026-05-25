@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        "uc:compressed_resin_clump"
+    ],
+    "result": {
+        "id": "minecraft:resin_clump",
+        "count": 8
+    }
+}
