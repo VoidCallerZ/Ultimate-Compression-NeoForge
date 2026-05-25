@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#C#",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:resin_clump",
+        "C": "uc:compression_catalyst"
+    },
+    "result": {
+        "id": "uc:compressed_resin_clump",
+        "count": 1
+    }
+}
