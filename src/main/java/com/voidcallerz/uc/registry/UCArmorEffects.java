@@ -26,6 +26,10 @@ public class UCArmorEffects {
 
     private static final List<ArmorSet> ARMOR_SETS = List.of(
 
+        new ArmorSet("compressed_copper", List.of(
+            effect(MobEffects.RESISTANCE, 0)     // Resistance I
+        )),
+
         new ArmorSet("compressed_iron", List.of(
             effect(MobEffects.STRENGTH, 0)          // Strength I
         )),

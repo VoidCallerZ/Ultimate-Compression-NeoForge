@@ -140,6 +140,7 @@ COMPRESSED_ITEMS = [
     { "name": "compressed_bone",            "base": "bone",            "burn": 0 },
     { "name": "compressed_string",          "base": "string",          "burn": 0 },
     { "name": "compressed_feather",         "base": "feather",         "burn": 0 },
+    { "name": "compressed_copper_nugget",   "base": "copper_nugget",   "burn": 0 },
     { "name": "compressed_iron_nugget",     "base": "iron_nugget",     "burn": 0 },
     { "name": "compressed_gold_nugget",     "base": "gold_nugget",     "burn": 0 },
     { "name": "compressed_coal",            "base": "coal",            "burn": 14400 },
@@ -591,6 +592,7 @@ def generate_block_tags(resource_path: Path) -> int:
 EQUIPMENT_MATERIALS_TOOLS = [
     ("wood",      "Wood"),
     ("stone",     "Stone"),
+    ("copper",    "Copper"),
     ("iron",      "Iron"),
     ("gold",      "Gold"),
     ("diamond",   "Diamond"),
@@ -598,6 +600,7 @@ EQUIPMENT_MATERIALS_TOOLS = [
 ]
 
 EQUIPMENT_MATERIALS_ARMOR = [
+    ("copper",    "Copper"),
     ("iron",      "Iron"),
     ("gold",      "Gold"),
     ("diamond",   "Diamond"),
@@ -623,6 +626,7 @@ ARMOR_TYPES = [
 TOOL_INGREDIENTS = {
     "wood":      "uc:compressed_oak_planks",
     "stone":     "uc:compressed_cobblestone",
+    "copper":    "uc:compressed_copper_ingot",
     "iron":      "uc:compressed_iron_ingot",
     "gold":      "uc:compressed_gold_ingot",
     "diamond":   "uc:compressed_diamond",
@@ -630,6 +634,7 @@ TOOL_INGREDIENTS = {
 }
 
 ARMOR_INGREDIENTS = {
+    "copper":    "uc:compressed_copper_ingot",
     "iron":      "uc:compressed_iron_ingot",
     "gold":      "uc:compressed_gold_ingot",
     "diamond":   "uc:compressed_diamond",

@@ -153,6 +153,7 @@ COMPRESSED_ITEM_TEXTURES = {
     "compressed_bone":            "bone",
     "compressed_string":          "string",
     "compressed_feather":         "feather",
+    "compressed_copper_nugget":   "copper_nugget",
     "compressed_iron_nugget":     "iron_nugget",
     "compressed_gold_nugget":     "gold_nugget",
     "compressed_coal":            "coal",
@@ -168,6 +169,7 @@ COMPRESSED_ITEM_TEXTURES = {
 TOOL_MATERIALS = {
     "wood":      "wooden",
     "stone":     "stone",
+    "copper":    "copper",
     "iron":      "iron",
     "gold":      "golden",
     "diamond":   "diamond",
@@ -187,6 +189,7 @@ for mat, vanilla_mat in TOOL_MATERIALS.items():
 # Maps compressed armor item name -> vanilla item texture stem
 # -------------------------------------------------------------------------
 ARMOR_MATERIALS = {
+    "copper":    "copper",
     "iron":      "iron",
     "gold":      "golden",
     "diamond":   "diamond",
@@ -208,6 +211,7 @@ for mat, vanilla_mat in ARMOR_MATERIALS.items():
 # layer_2 = leggings
 # -------------------------------------------------------------------------
 ARMOR_LAYER_SOURCES = {
+    "copper":    "copper",
     "iron":      "iron",
     "gold":      "gold",
     "diamond":   "diamond",

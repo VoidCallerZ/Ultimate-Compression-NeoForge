@@ -336,5 +336,15 @@
     "block.uc.double_compressed_pale_oak_planks": "Double Compressed Pale Oak Planks",
     "block.uc.compressed_resin_block": "Compressed Resin Block",
     "block.uc.double_compressed_resin_block": "Double Compressed Resin Block",
-    "item.uc.compressed_resin_clump": "Compressed Resin Clump"
+    "item.uc.compressed_resin_clump": "Compressed Resin Clump",
+    "item.uc.compressed_copper_nugget": "Compressed Copper Nugget",
+    "item.uc.compressed_copper_sword": "Compressed Copper Sword",
+    "item.uc.compressed_copper_pickaxe": "Compressed Copper Pickaxe",
+    "item.uc.compressed_copper_axe": "Compressed Copper Axe",
+    "item.uc.compressed_copper_shovel": "Compressed Copper Shovel",
+    "item.uc.compressed_copper_hoe": "Compressed Copper Hoe",
+    "item.uc.compressed_copper_helmet": "Compressed Copper Helmet",
+    "item.uc.compressed_copper_chestplate": "Compressed Copper Chestplate",
+    "item.uc.compressed_copper_leggings": "Compressed Copper Leggings",
+    "item.uc.compressed_copper_boots": "Compressed Copper Boots"
 }

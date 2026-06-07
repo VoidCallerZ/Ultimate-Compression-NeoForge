@@ -14,10 +14,19 @@ import java.util.Map;
 
 public class UCArmorMaterials {
 
+    public static final int COPPER_DUR    = 13 * 9;
     public static final int IRON_DUR      = 15 * 9;
     public static final int GOLD_DUR      = 7  * 9;
     public static final int DIAMOND_DUR   = 33 * 9;
     public static final int NETHERITE_DUR = 37 * 9;
+
+    public static final ArmorMaterial COMPRESSED_COPPER = new ArmorMaterial(
+        COPPER_DUR, defenseMap(3, 5, 4, 2), 10,
+        SoundEvents.ARMOR_EQUIP_COPPER, 0.0f, 0.0f,
+        ItemTags.REPAIRS_COPPER_ARMOR,
+        ResourceKey.create(EquipmentAssets.ROOT_ID,
+            ResourceLocation.fromNamespaceAndPath(ModConstants.MOD_ID, "compressed_copper"))
+    );
 
     public static final ArmorMaterial COMPRESSED_IRON = new ArmorMaterial(
         IRON_DUR, defenseMap(3, 7, 6, 3), 11,
