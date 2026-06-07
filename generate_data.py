@@ -115,7 +115,7 @@ ALL_MATERIALS = STANDARD_MATERIALS + TOP_BOTTOM_MATERIALS + LOG_MATERIALS
 # -------------------------------------------------------------------------
 VANILLA_CONFLICTS = {
     "iron_ingot", "gold_ingot", "copper_ingot", "diamond", "emerald",
-    "lapis_lazuli", "redstone", "coal", "netherite_ingot",
+    "lapis_lazuli", "redstone", "coal", "netherite_ingot", "copper_nugget",
     "iron_nugget", "gold_nugget", "quartz", "bone", "string",
     "raw_iron", "raw_gold", "raw_copper", "resin_clump",
 }
