@@ -115,7 +115,7 @@ ALL_MATERIALS = STANDARD_MATERIALS + TOP_BOTTOM_MATERIALS + LOG_MATERIALS
 # -------------------------------------------------------------------------
 VANILLA_CONFLICTS = {
     "iron_ingot", "gold_ingot", "copper_ingot", "diamond", "emerald",
-    "lapis_lazuli", "redstone", "coal", "netherite_ingot",
+    "lapis_lazuli", "redstone", "coal", "netherite_ingot", "copper_nugget",
     "iron_nugget", "gold_nugget", "quartz", "bone", "string",
     "raw_iron", "raw_gold", "raw_copper", "resin_clump",
 }
@@ -124,6 +124,7 @@ COMPRESSED_ITEMS = [
     { "name": "compressed_raw_iron",        "base": "raw_iron",        "burn": 0 },
     { "name": "compressed_raw_gold",        "base": "raw_gold",        "burn": 0 },
     { "name": "compressed_raw_copper",      "base": "raw_copper",      "burn": 0 },
+    { "name": "compressed_copper_nugget",   "base": "copper_nugget",    "burn": 0 },
     { "name": "compressed_iron_ingot",      "base": "iron_ingot",      "burn": 0 },
     { "name": "compressed_gold_ingot",      "base": "gold_ingot",      "burn": 0 },
     { "name": "compressed_copper_ingot",    "base": "copper_ingot",    "burn": 0 },
@@ -591,6 +592,7 @@ def generate_block_tags(resource_path: Path) -> int:
 EQUIPMENT_MATERIALS_TOOLS = [
     ("wood",      "Wood"),
     ("stone",     "Stone"),
+    ("copper",    "Copper"),
     ("iron",      "Iron"),
     ("gold",      "Gold"),
     ("diamond",   "Diamond"),
@@ -598,6 +600,7 @@ EQUIPMENT_MATERIALS_TOOLS = [
 ]
 
 EQUIPMENT_MATERIALS_ARMOR = [
+    ("copper",    "Copper"),
     ("iron",      "Iron"),
     ("gold",      "Gold"),
     ("diamond",   "Diamond"),
@@ -623,6 +626,7 @@ ARMOR_TYPES = [
 TOOL_INGREDIENTS = {
     "wood":      "uc:compressed_oak_planks",
     "stone":     "uc:compressed_cobblestone",
+    "copper":    "uc:compressed_copper_ingot",
     "iron":      "uc:compressed_iron_ingot",
     "gold":      "uc:compressed_gold_ingot",
     "diamond":   "uc:compressed_diamond",
@@ -630,6 +634,8 @@ TOOL_INGREDIENTS = {
 }
 
 ARMOR_INGREDIENTS = {
+    "leather":   "uc:compressed_leather",
+    "copper":    "uc:compressed_copper_ingot",
     "iron":      "uc:compressed_iron_ingot",
     "gold":      "uc:compressed_gold_ingot",
     "diamond":   "uc:compressed_diamond",
