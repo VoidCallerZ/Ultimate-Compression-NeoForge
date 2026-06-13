@@ -80,6 +80,12 @@ MATERIALS = [
     # Natural blocks
     "sandstone", "red_sandstone", "ice", "packed_ice", "blue_ice", "clay",
     "snow_block", "moss_block", "end_stone",
+    # Leaves
+    "oak_leaves", "spruce_leaves", "birch_leaves", "jungle_leaves", "acacia_leaves",
+    "dark_oak_leaves", "mangrove_leaves", "cherry_leaves", "pale_oak_leaves", 
+    "azalea_leaves", "flowering_azalea_leaves",
+    # New in 1.21.4
+    "pale_moss_block", "pale_oak_log", "pale_oak_planks", "resin_block",
 ]
 
 TEXTURE_OVERRIDES = {
@@ -112,6 +118,19 @@ LOG_TOP_TEXTURES = {
     "quartz_block":  "quartz_block_top",
     "sandstone":     "sandstone_top",
     "red_sandstone": "red_sandstone_top",
+    "pale_oak_log":    "pale_oak_log_top",
+}
+
+
+# -------------------------------------------------------------------------
+# TINTED MATERIALS — blocks whose color is applied by the biome at runtime.
+# These are grayscale textures (leaves, grass etc.) — we preserve their
+# alpha channel exactly and skip border darkening so transparency is kept.
+# -------------------------------------------------------------------------
+TINTED_MATERIALS = {
+    "oak_leaves", "spruce_leaves", "birch_leaves", "jungle_leaves",
+    "acacia_leaves", "dark_oak_leaves", "mangrove_leaves", "cherry_leaves",
+    "pale_oak_leaves", "azalea_leaves", "flowering_azalea_leaves",
 }
 
 COMPRESSED_ITEM_TEXTURES = {
@@ -134,10 +153,12 @@ COMPRESSED_ITEM_TEXTURES = {
     "compressed_bone":            "bone",
     "compressed_string":          "string",
     "compressed_feather":         "feather",
+    "compressed_copper_nugget":   "copper_nugget",
     "compressed_iron_nugget":     "iron_nugget",
     "compressed_gold_nugget":     "gold_nugget",
     "compressed_coal":            "coal",
     "compressed_blaze_rod":       "blaze_rod",
+    "compressed_resin_clump":     "resin_clump",
 }
 
 # -------------------------------------------------------------------------
@@ -148,6 +169,7 @@ COMPRESSED_ITEM_TEXTURES = {
 TOOL_MATERIALS = {
     "wood":      "wooden",
     "stone":     "stone",
+    "copper":    "copper",
     "iron":      "iron",
     "gold":      "golden",
     "diamond":   "diamond",
@@ -167,6 +189,7 @@ for mat, vanilla_mat in TOOL_MATERIALS.items():
 # Maps compressed armor item name -> vanilla item texture stem
 # -------------------------------------------------------------------------
 ARMOR_MATERIALS = {
+    "copper":    "copper",
     "iron":      "iron",
     "gold":      "golden",
     "diamond":   "diamond",
@@ -188,6 +211,7 @@ for mat, vanilla_mat in ARMOR_MATERIALS.items():
 # layer_2 = leggings
 # -------------------------------------------------------------------------
 ARMOR_LAYER_SOURCES = {
+    "copper":    "copper",
     "iron":      "iron",
     "gold":      "gold",
     "diamond":   "diamond",
@@ -430,6 +454,24 @@ def apply_effects_no_border(base_image, tier_index):
     result.putalpha(a)
     return result
 
+
+
+def apply_tier_effects_tinted(base_image, tier_index):
+    """
+    For tinted/transparent textures like leaves.
+    - Preserves alpha channel exactly (no border darkening on transparent pixels)
+    - Applies only brightness darkening — no saturation change since tinted
+      blocks get their color from the biome at runtime
+    - Border darkening is skipped entirely to keep transparency intact
+    """
+    r, g, b, a = base_image.split()
+    rgb = Image.merge("RGB", (r, g, b))
+    # Only darken slightly — don't change saturation on grayscale tinted textures
+    rgb = ImageEnhance.Brightness(rgb).enhance(TIER_BRIGHTNESS[tier_index])
+    result = rgb.convert("RGBA")
+    result.putalpha(a)  # Restore original alpha — no border darkening
+    return result
+
 # =============================================================================
 # OUTPUT
 # =============================================================================
@@ -438,13 +480,16 @@ def write_block_textures(side_textures, top_textures, resource_path):
     out_base = resource_path / "assets" / MOD_ID / "textures" / "block"
     out_base.mkdir(parents=True, exist_ok=True)
     for material, base_img in side_textures.items():
+        is_tinted = material in TINTED_MATERIALS
         for tier_index, prefix in enumerate(TIER_PREFIXES):
-            processed = apply_tier_effects(base_img, tier_index)
+            processed = (apply_tier_effects_tinted(base_img, tier_index)
+                         if is_tinted else apply_tier_effects(base_img, tier_index))
             processed.save(out_base / f"{prefix}_{material}.png")
             if material in top_textures:
-                top_processed = apply_tier_effects(top_textures[material], tier_index)
+                top_processed = (apply_tier_effects_tinted(top_textures[material], tier_index)
+                                 if is_tinted else apply_tier_effects(top_textures[material], tier_index))
                 top_processed.save(out_base / f"{prefix}_{material}_top.png")
-        print(f"    v {material}")
+        print(f"    v {material}{'  (tinted)' if is_tinted else ''}")
 
 
 def write_item_textures(item_textures, resource_path, jar_path):
