@@ -86,6 +86,8 @@ MATERIALS = [
     "azalea_leaves", "flowering_azalea_leaves",
     # New in 1.21.4
     "pale_moss_block", "pale_oak_log", "pale_oak_planks", "resin_block",
+    # New in 26.2
+    "cinnabar", "sulfur", "potent_sulfur",
 ]
 
 TEXTURE_OVERRIDES = {

@@ -1,6 +1,6 @@
-xcopy "F:\Minecraft Mods\NeoForge\UC 1.21.x NeoForge" "F:\Minecraft Mods\NeoForge\UC 1.21.x NeoForge" /E /I /H
-cd "F:\Minecraft Mods\NeoForge\UC 1.21.x NeoForge"
-git checkout -b 1.21.x
+xcopy "F:\Minecraft Mods\NeoForge\UC 26.x NeoForge" "F:\Minecraft Mods\NeoForge\UC 26.x NeoForge" /E /I /H
+cd "F:\Minecraft Mods\NeoForge\UC 26.x NeoForge"
+git checkout -b 26.x
 .\gradlew --stop
 Remove .gradle folder
 Update neoforge.mods.toml, gradle-wrapper.properties, build.gradle, gradle.properties, settings.gradle

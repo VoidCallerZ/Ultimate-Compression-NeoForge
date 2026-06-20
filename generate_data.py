@@ -89,6 +89,8 @@ STANDARD_MATERIALS = [
     "azalea_leaves", "flowering_azalea_leaves",
     # New in 1.21.4
     "pale_moss_block", "pale_oak_log", "pale_oak_planks", "resin_block",
+    # New in 26.2
+    "cinnabar", "sulfur", "potent_sulfur",
 ]
 
 TOP_BOTTOM_MATERIALS = [
@@ -117,7 +119,15 @@ VANILLA_CONFLICTS = {
     "iron_ingot", "gold_ingot", "copper_ingot", "diamond", "emerald",
     "lapis_lazuli", "redstone", "coal", "netherite_ingot", "copper_nugget",
     "iron_nugget", "gold_nugget", "quartz", "bone", "string",
-    "raw_iron", "raw_gold", "raw_copper", "resin_clump",
+    "raw_iron", "raw_gold", "raw_copper", "resin_clump", "sulfur"
+}
+
+# -------------------------------------------------------------------------
+# Blocks that already have a vanilla 9-in-3x3 recipe.
+# These use the 8-around-catalyst pattern to avoid conflicts.
+# -------------------------------------------------------------------------
+BLOCK_VANILLA_CONFLICTS = {
+    "sulfur",
 }
 
 COMPRESSED_ITEMS = [
@@ -453,10 +463,18 @@ def generate_block_recipes(resource_path: Path) -> int:
     out_base = resource_path / "data" / MOD_ID / "recipe"
     count = 0
     for material in ALL_MATERIALS:
-        write_json(out_base / f"compress_{material}.json",
-                   make_standard_compress(item_id(material, None), item_id(material, 0)))
-        write_json(out_base / f"decompress_{material}.json",
-                   make_decompress(item_id(material, 0), item_id(material, None)))
+        # Use catalyst pattern for blocks with vanilla 9-in-3x3 conflicts
+        if material in BLOCK_VANILLA_CONFLICTS:
+            write_json(out_base / f"compress_{material}.json",
+                       make_compressor_compress(item_id(material, None), item_id(material, 0)))
+            write_json(out_base / f"decompress_{material}.json",
+                       make_decompress(item_id(material, 0), item_id(material, None), 8))
+        else:
+            write_json(out_base / f"compress_{material}.json",
+                       make_standard_compress(item_id(material, None), item_id(material, 0)))
+            write_json(out_base / f"decompress_{material}.json",
+                       make_decompress(item_id(material, 0), item_id(material, None)))
+        # Double compress never conflicts — always 9-in-3x3
         write_json(out_base / f"compress_double_{material}.json",
                    make_standard_compress(item_id(material, 0), item_id(material, 1)))
         write_json(out_base / f"decompress_double_{material}.json",

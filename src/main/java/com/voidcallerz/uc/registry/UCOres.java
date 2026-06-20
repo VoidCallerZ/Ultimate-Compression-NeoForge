@@ -55,12 +55,12 @@ public class UCOres {
 
             DeferredHolder<Block, Block> block;
             if (xpMin == 0 && xpMax == 0) {
-                block = BLOCKS.registerBlock(name, Block::new, baseProps);
+                block = BLOCKS.registerBlock(name, Block::new, () -> baseProps);
             } else {
                 final int fMin = xpMin, fMax = xpMax;
                 block = BLOCKS.registerBlock(name,
                     props -> new DropExperienceBlock(UniformInt.of(fMin, fMax), props),
-                    baseProps);
+                    () -> baseProps);
             }
 
             ALL_ORE_BLOCKS.put(name, block);

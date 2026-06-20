@@ -346,5 +346,11 @@
     "item.uc.compressed_copper_helmet": "Compressed Copper Helmet",
     "item.uc.compressed_copper_chestplate": "Compressed Copper Chestplate",
     "item.uc.compressed_copper_leggings": "Compressed Copper Leggings",
-    "item.uc.compressed_copper_boots": "Compressed Copper Boots"
+    "item.uc.compressed_copper_boots": "Compressed Copper Boots",
+    "block.uc.compressed_cinnabar": "Compressed Cinnabar",
+    "block.uc.double_compressed_cinnabar": "Double Compressed Cinnabar",
+    "block.uc.compressed_sulfur": "Compressed Sulfur",
+    "block.uc.double_compressed_sulfur": "Double Compressed Sulfur",
+    "block.uc.compressed_potent_sulfur": "Compressed Potent Sulfur",
+    "block.uc.double_compressed_potent_sulfur": "Double Compressed Potent Sulfur"
 }

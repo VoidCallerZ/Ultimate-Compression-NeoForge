@@ -211,7 +211,12 @@ public class UCBlocks {
         { "pale_moss_block", MapColor.COLOR_LIGHT_GREEN, SoundType.GRASS, 0.8f, 4.0f },
         { "pale_oak_log", MapColor.COLOR_LIGHT_GREEN, SoundType.WOOD, 2.0f, 2.0f },
         { "pale_oak_planks", MapColor.COLOR_LIGHT_GREEN, SoundType.WOOD, 2.0f, 3.0f },
-        { "resin_block", MapColor.COLOR_YELLOW, SoundType.STONE, 1.5f, 6.0f }
+        { "resin_block", MapColor.COLOR_YELLOW, SoundType.STONE, 1.5f, 6.0f },
+
+        // --- New in 26.2 ---
+        { "cinnabar", MapColor.COLOR_RED, SoundType.STONE, 1.5f, 6.0f },
+        { "sulfur", MapColor.COLOR_YELLOW, SoundType.STONE, 1.5f, 6.0f },
+        { "potent_sulfur", MapColor.GOLD, SoundType.STONE, 1.5f, 6.0f },
     };
 
     private static BlockBehaviour.Properties buildProps(
@@ -255,19 +260,19 @@ public class UCBlocks {
                 if (fIsLog) {
                     block = BLOCKS.registerBlock(registryName,
                         RotatedPillarBlock::new,
-                        buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool));
+                        () -> buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool));
                 } else if (fIsFalling) {
                     block = BLOCKS.registerBlock(registryName,
                         UCFallingBlock::new,
-                        buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool));
+                        () -> buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool));
                 } else if (fIsLeaves) {
                     block = BLOCKS.registerBlock(registryName,
                         Block::new,
-                        buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool).noOcclusion());
+                        () -> buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool).noOcclusion());
                 } else {
                     block = BLOCKS.registerBlock(registryName,
                         Block::new,
-                        buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool));
+                        () -> buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool));
                 }
 
                 ALL_BLOCKS.put(registryName, block);
