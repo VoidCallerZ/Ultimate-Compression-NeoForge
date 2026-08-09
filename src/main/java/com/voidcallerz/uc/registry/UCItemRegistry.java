@@ -68,7 +68,7 @@ public class UCItemRegistry {
         { "compressed_lapis",           0 },
         { "compressed_redstone",        0 },
         { "compressed_flint",           0 },
-        { "compressed_stick",           0 },
+        { "compressed_stick",           900 },
         { "compressed_leather",         0 },
         { "compressed_bone",            0 },
         { "compressed_string",          0 },
