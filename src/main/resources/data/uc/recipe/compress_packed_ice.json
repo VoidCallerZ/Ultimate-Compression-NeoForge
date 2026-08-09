@@ -2,12 +2,15 @@
     "type": "minecraft:crafting_shaped",
     "pattern": [
         "###",
-        "###",
+        "#C#",
         "###"
     ],
     "key": {
         "#": {
             "item": "minecraft:packed_ice"
+        },
+        "C": {
+            "item": "uc:compression_catalyst"
         }
     },
     "result": {

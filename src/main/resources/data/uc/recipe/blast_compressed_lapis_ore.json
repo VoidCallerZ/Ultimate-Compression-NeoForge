@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:blasting",
+    "ingredient": {
+        "item": "uc:compressed_lapis_ore"
+    },
+    "result": {
+        "id": "uc:compressed_lapis",
+        "count": 1
+    },
+    "experience": 0.9,
+    "cookingtime": 100
+}

@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "uc:compressed_redstone_ore"
+    },
+    "result": {
+        "id": "uc:compressed_redstone",
+        "count": 1
+    },
+    "experience": 0.9,
+    "cookingtime": 200
+}
