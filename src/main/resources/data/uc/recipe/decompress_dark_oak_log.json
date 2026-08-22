@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_dark_oak_log"
-        }
+        "uc:compressed_dark_oak_log"
     ],
     "result": {
         "id": "minecraft:dark_oak_log",

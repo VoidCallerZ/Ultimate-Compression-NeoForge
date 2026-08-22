@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:lime_wool"
-        }
+        "#": "minecraft:lime_wool"
     },
     "result": {
         "id": "uc:compressed_lime_wool",

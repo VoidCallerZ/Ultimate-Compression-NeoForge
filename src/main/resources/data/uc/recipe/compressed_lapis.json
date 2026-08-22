@@ -6,12 +6,8 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:lapis_lazuli"
-        },
-        "C": {
-            "item": "uc:compression_catalyst"
-        }
+        "#": "minecraft:lapis_lazuli",
+        "C": "uc:compression_catalyst"
     },
     "result": {
         "id": "uc:compressed_lapis",

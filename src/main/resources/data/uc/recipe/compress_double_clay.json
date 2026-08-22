@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_clay"
-        }
+        "#": "uc:compressed_clay"
     },
     "result": {
         "id": "uc:double_compressed_clay",

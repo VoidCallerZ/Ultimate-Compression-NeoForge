@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_birch_planks"
-        }
+        "uc:compressed_birch_planks"
     ],
     "result": {
         "id": "minecraft:birch_planks",

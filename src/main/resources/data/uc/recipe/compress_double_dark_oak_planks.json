@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_dark_oak_planks"
-        }
+        "#": "uc:compressed_dark_oak_planks"
     },
     "result": {
         "id": "uc:double_compressed_dark_oak_planks",

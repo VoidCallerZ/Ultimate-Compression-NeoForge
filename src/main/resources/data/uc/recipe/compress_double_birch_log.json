@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_birch_log"
-        }
+        "#": "uc:compressed_birch_log"
     },
     "result": {
         "id": "uc:double_compressed_birch_log",

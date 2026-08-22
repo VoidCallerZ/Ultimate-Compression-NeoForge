@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_acacia_planks"
-        }
+        "#": "uc:compressed_acacia_planks"
     },
     "result": {
         "id": "uc:double_compressed_acacia_planks",

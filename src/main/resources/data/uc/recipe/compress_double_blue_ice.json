@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_blue_ice"
-        }
+        "#": "uc:compressed_blue_ice"
     },
     "result": {
         "id": "uc:double_compressed_blue_ice",

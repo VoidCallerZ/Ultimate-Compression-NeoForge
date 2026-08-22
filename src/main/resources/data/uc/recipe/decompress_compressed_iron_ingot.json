@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_iron_ingot"
-        }
+        "uc:compressed_iron_ingot"
     ],
     "result": {
         "id": "minecraft:iron_ingot",

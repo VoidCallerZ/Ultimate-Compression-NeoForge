@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_magma_block"
-        }
+        "#": "uc:compressed_magma_block"
     },
     "result": {
         "id": "uc:double_compressed_magma_block",

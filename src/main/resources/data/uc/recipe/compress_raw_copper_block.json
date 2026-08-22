@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:raw_copper_block"
-        }
+        "#": "minecraft:raw_copper_block"
     },
     "result": {
         "id": "uc:compressed_raw_copper_block",

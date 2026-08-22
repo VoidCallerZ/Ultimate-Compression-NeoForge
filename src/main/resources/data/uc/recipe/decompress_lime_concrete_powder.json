@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_lime_concrete_powder"
-        }
+        "uc:compressed_lime_concrete_powder"
     ],
     "result": {
         "id": "minecraft:lime_concrete_powder",

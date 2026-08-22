@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_jungle_log"
-        }
+        "uc:compressed_jungle_log"
     ],
     "result": {
         "id": "minecraft:jungle_log",

@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_iron_nugget"
-        }
+        "uc:compressed_iron_nugget"
     ],
     "result": {
         "id": "minecraft:iron_nugget",

@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:magenta_concrete"
-        }
+        "#": "minecraft:magenta_concrete"
     },
     "result": {
         "id": "uc:compressed_magenta_concrete",

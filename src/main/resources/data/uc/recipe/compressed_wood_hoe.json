@@ -6,12 +6,8 @@
         " S"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_oak_planks"
-        },
-        "S": {
-            "item": "uc:compressed_stick"
-        }
+        "#": "uc:compressed_oak_planks",
+        "S": "uc:compressed_stick"
     },
     "result": {
         "id": "uc:compressed_wood_hoe",

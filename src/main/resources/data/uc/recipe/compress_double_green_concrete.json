@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_green_concrete"
-        }
+        "#": "uc:compressed_green_concrete"
     },
     "result": {
         "id": "uc:double_compressed_green_concrete",

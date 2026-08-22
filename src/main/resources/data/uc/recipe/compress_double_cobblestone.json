@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_cobblestone"
-        }
+        "#": "uc:compressed_cobblestone"
     },
     "result": {
         "id": "uc:double_compressed_cobblestone",

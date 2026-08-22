@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_raw_iron_block"
-        }
+        "#": "uc:compressed_raw_iron_block"
     },
     "result": {
         "id": "uc:double_compressed_raw_iron_block",

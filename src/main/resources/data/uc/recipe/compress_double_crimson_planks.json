@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_crimson_planks"
-        }
+        "#": "uc:compressed_crimson_planks"
     },
     "result": {
         "id": "uc:double_compressed_crimson_planks",

@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:purple_concrete_powder"
-        }
+        "#": "minecraft:purple_concrete_powder"
     },
     "result": {
         "id": "uc:compressed_purple_concrete_powder",

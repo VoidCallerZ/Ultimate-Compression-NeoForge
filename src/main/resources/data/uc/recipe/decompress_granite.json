@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_granite"
-        }
+        "uc:compressed_granite"
     ],
     "result": {
         "id": "minecraft:granite",

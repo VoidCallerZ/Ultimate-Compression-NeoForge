@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:light_blue_concrete"
-        }
+        "#": "minecraft:light_blue_concrete"
     },
     "result": {
         "id": "uc:compressed_light_blue_concrete",

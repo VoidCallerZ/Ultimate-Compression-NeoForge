@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_warped_stem"
-        }
+        "#": "uc:compressed_warped_stem"
     },
     "result": {
         "id": "uc:double_compressed_warped_stem",

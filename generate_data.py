@@ -97,7 +97,15 @@ VANILLA_CONFLICTS = {
     "iron_ingot", "gold_ingot", "copper_ingot", "diamond", "emerald",
     "lapis_lazuli", "redstone", "coal", "netherite_ingot",
     "iron_nugget", "gold_nugget", "quartz", "bone", "string",
-    "raw_iron", "raw_gold", "raw_copper",
+    "raw_iron", "raw_gold", "raw_copper"
+}
+
+# -------------------------------------------------------------------------
+# Blocks that already have a vanilla 9-in-3x3 recipe.
+# These use the 8-around-catalyst pattern to avoid conflicts.
+# -------------------------------------------------------------------------
+BLOCK_VANILLA_CONFLICTS = {
+    "ice", "packed_ice"
 }
 
 COMPRESSED_ITEMS = [
@@ -115,7 +123,7 @@ COMPRESSED_ITEMS = [
     { "name": "compressed_lapis",           "base": "lapis_lazuli",    "burn": 0 },
     { "name": "compressed_redstone",        "base": "redstone",        "burn": 0 },
     { "name": "compressed_flint",           "base": "flint",           "burn": 0 },
-    { "name": "compressed_stick",           "base": "stick",           "burn": 0 },
+    { "name": "compressed_stick",           "base": "stick",           "burn": 900 },
     { "name": "compressed_leather",         "base": "leather",         "burn": 0 },
     { "name": "compressed_bone",            "base": "bone",            "burn": 0 },
     { "name": "compressed_string",          "base": "string",          "burn": 0 },
@@ -125,6 +133,32 @@ COMPRESSED_ITEMS = [
     { "name": "compressed_coal",            "base": "coal",            "burn": 14400 },
     { "name": "compressed_blaze_rod",       "base": "blaze_rod",       "burn": 11200 },
 ]
+
+# -------------------------------------------------------------------------
+# SMELTING RECIPES — compressed raw ores that can be smelted/blasted
+# into their compressed ingot counterpart.
+# "input"    : the compressed raw item
+# "output"   : the compressed ingot/result
+# "xp"       : experience per smelt (vanilla iron/gold = 0.7, copper = 0.7)
+# "time"     : smelting time in ticks (furnace default = 200, blast = 100)
+# -------------------------------------------------------------------------
+SMELTING_RECIPES = [
+    { "input": "compressed_raw_iron",   "output": "compressed_iron_ingot",   "xp": 6.3, "time": 200 },
+    { "input": "compressed_raw_gold",   "output": "compressed_gold_ingot",   "xp": 6.3, "time": 200 },
+    { "input": "compressed_raw_copper", "output": "compressed_copper_ingot", "xp": 6.3, "time": 200 },
+    { "input": "compressed_coal_ore",   "output": "compressed_coal",         "xp": 0.9, "time": 200 },
+    { "input": "compressed_iron_ore",   "output": "compressed_iron_ingot",   "xp": 0.9, "time": 200 },
+    { "input": "compressed_gold_ore",   "output": "compressed_gold_ingot",   "xp": 0.9, "time": 200 },
+    { "input": "compressed_copper_ore", "output": "compressed_copper_ingot", "xp": 0.9, "time": 200 },
+    { "input": "compressed_diamond_ore", "output": "compressed_diamond",     "xp": 0.9, "time": 200 },
+    { "input": "compressed_emerald_ore", "output": "compressed_emerald",     "xp": 0.9, "time": 200 },
+    { "input": "compressed_lapis_ore", "output": "compressed_lapis",         "xp": 0.9, "time": 200 },
+    { "input": "compressed_redstone_ore", "output": "compressed_redstone",   "xp": 0.9, "time": 200 },
+    { "input": "compressed_nether_quartz_ore", "output": "compressed_quartz",     "xp": 0.9, "time": 200 },
+    { "input": "compressed_nether_gold_ore", "output": "compressed_gold_ingot",    "xp": 0.9, "time": 200 },
+
+]
+
 
 LOWERCASE_WORDS = {"a", "an", "the", "of", "in", "on", "at", "and", "or"}
 
@@ -353,7 +387,7 @@ def make_standard_compress(input_id: str, output_id: str) -> dict:
     return {
         "type": "minecraft:crafting_shaped",
         "pattern": ["###", "###", "###"],
-        "key": { "#": { "item": input_id } },
+        "key": { "#": input_id },
         "result": { "id": output_id, "count": 1 }
     }
 
@@ -363,8 +397,8 @@ def make_compressor_compress(input_id: str, output_id: str) -> dict:
         "type": "minecraft:crafting_shaped",
         "pattern": ["###", "#C#", "###"],
         "key": {
-            "#": { "item": input_id },
-            "C": { "item": COMPRESSOR_ID }
+            "#": input_id,
+            "C": COMPRESSOR_ID
         },
         "result": { "id": output_id, "count": 1 }
     }
@@ -373,7 +407,7 @@ def make_compressor_compress(input_id: str, output_id: str) -> dict:
 def make_decompress(input_id: str, output_id: str, count: int = 9) -> dict:
     return {
         "type": "minecraft:crafting_shapeless",
-        "ingredients": [{ "item": input_id }],
+        "ingredients": [input_id],
         "result": { "id": output_id, "count": count }
     }
 
@@ -383,8 +417,8 @@ def make_compressor_recipe() -> dict:
         "type": "minecraft:crafting_shaped",
         "pattern": ["RRR", "RIR", "RRR"],
         "key": {
-            "R": { "item": "minecraft:redstone" },
-            "I": { "item": "minecraft:iron_ingot" }
+            "R": "minecraft:redstone",
+            "I": "minecraft:iron_ingot"
         },
         "result": { "id": COMPRESSOR_ID, "count": 1 }
     }
@@ -394,10 +428,18 @@ def generate_block_recipes(resource_path: Path) -> int:
     out_base = resource_path / "data" / MOD_ID / "recipe"
     count = 0
     for material in ALL_MATERIALS:
-        write_json(out_base / f"compress_{material}.json",
-                   make_standard_compress(item_id(material, None), item_id(material, 0)))
-        write_json(out_base / f"decompress_{material}.json",
-                   make_decompress(item_id(material, 0), item_id(material, None)))
+        # Use catalyst pattern for blocks with vanilla 9-in-3x3 conflicts
+        if material in BLOCK_VANILLA_CONFLICTS:
+            write_json(out_base / f"compress_{material}.json",
+                       make_compressor_compress(item_id(material, None), item_id(material, 0)))
+            write_json(out_base / f"decompress_{material}.json",
+                       make_decompress(item_id(material, 0), item_id(material, None), 8))
+        else:
+            write_json(out_base / f"compress_{material}.json",
+                       make_standard_compress(item_id(material, None), item_id(material, 0)))
+            write_json(out_base / f"decompress_{material}.json",
+                       make_decompress(item_id(material, 0), item_id(material, None)))
+        # Double compress never conflicts — always 9-in-3x3
         write_json(out_base / f"compress_double_{material}.json",
                    make_standard_compress(item_id(material, 0), item_id(material, 1)))
         write_json(out_base / f"decompress_double_{material}.json",
@@ -425,6 +467,47 @@ def generate_item_recipes(resource_path: Path) -> int:
         decompress_count = 8 if base in VANILLA_CONFLICTS else 9
         write_json(out_base / f"decompress_{name}.json",
                    make_decompress(comp_id, base_id, decompress_count))
+        count += 2
+    return count
+
+# =============================================================================
+# SMELTING / BLASTING RECIPES
+# =============================================================================
+
+def make_smelting_recipe(input_id: str, output_id: str, xp: float, time: int) -> dict:
+    return {
+        "type": "minecraft:smelting",
+        "ingredient": input_id,
+        "result": {"id": output_id, "count": 1},
+        "experience": xp,
+        "cookingtime": time
+    }
+
+
+def make_blasting_recipe(input_id: str, output_id: str, xp: float, time: int) -> dict:
+    return {
+        "type": "minecraft:blasting",
+        "ingredient": input_id,
+        "result": {"id": output_id, "count": 1},
+        "experience": xp,
+        "cookingtime": time
+    }
+
+
+def generate_smelting_recipes(resource_path: Path) -> int:
+    out_base = resource_path / "data" / MOD_ID / "recipe"
+    count = 0
+    for entry in SMELTING_RECIPES:
+        input_id  = f"{MOD_ID}:{entry['input']}"
+        output_id = f"{MOD_ID}:{entry['output']}"
+        xp        = entry["xp"]
+        time      = entry["time"]
+        # Furnace recipe
+        write_json(out_base / f"smelt_{entry['input']}.json",
+                   make_smelting_recipe(input_id, output_id, xp, time))
+        # Blast furnace recipe (half the time)
+        write_json(out_base / f"blast_{entry['input']}.json",
+                   make_blasting_recipe(input_id, output_id, xp, time // 2))
         count += 2
     return count
 
@@ -606,9 +689,9 @@ def generate_equipment_recipes(resource_path: Path) -> int:
             name    = f"compressed_{mat}_{tool}"
             pattern = TOOL_PATTERNS[tool]
             # Build key — tools use # for material and S for stick
-            key = {"#": {"item": mat_id}}
+            key = {"#": mat_id}
             if any("S" in row for row in pattern):
-                key["S"] = {"item": stick_id}
+                key["S"] = stick_id
             write_json(out_base / f"{name}.json", {
                 "type": "minecraft:crafting_shaped",
                 "pattern": pattern,
@@ -625,7 +708,7 @@ def generate_equipment_recipes(resource_path: Path) -> int:
             write_json(out_base / f"{name}.json", {
                 "type": "minecraft:crafting_shaped",
                 "pattern": pattern,
-                "key": {"#": {"item": mat_id}},
+                "key": {"#": mat_id},
                 "result": {"id": f"{MOD_ID}:{name}", "count": 1}
             })
             count += 1
@@ -707,6 +790,7 @@ def main():
     im2  = generate_item_models_standalone(resource_path)
     rec  = generate_block_recipes(resource_path)
     irec = generate_item_recipes(resource_path)
+    smlt = generate_smelting_recipes(resource_path)
     loot = generate_loot_tables(resource_path)
     lang = generate_lang(resource_path)
 
@@ -722,6 +806,7 @@ def main():
   Standalone item models   : {im2}
   Block recipe JSONs       : {rec}
   Item recipe JSONs        : {irec}
+  Smelting/blasting JSONs  : {smlt}
   Loot table JSONs         : {loot}
   Language entries         : {lang}
     """)

@@ -6,12 +6,8 @@
         "S"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_diamond"
-        },
-        "S": {
-            "item": "uc:compressed_stick"
-        }
+        "#": "uc:compressed_diamond",
+        "S": "uc:compressed_stick"
     },
     "result": {
         "id": "uc:compressed_diamond_shovel",

@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:emerald_block"
-        }
+        "#": "minecraft:emerald_block"
     },
     "result": {
         "id": "uc:compressed_emerald_block",

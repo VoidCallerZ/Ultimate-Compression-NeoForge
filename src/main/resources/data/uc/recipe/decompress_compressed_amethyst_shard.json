@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_amethyst_shard"
-        }
+        "uc:compressed_amethyst_shard"
     ],
     "result": {
         "id": "minecraft:amethyst_shard",

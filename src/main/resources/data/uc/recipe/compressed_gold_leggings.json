@@ -6,9 +6,7 @@
         "# #"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_gold_ingot"
-        }
+        "#": "uc:compressed_gold_ingot"
     },
     "result": {
         "id": "uc:compressed_gold_leggings",

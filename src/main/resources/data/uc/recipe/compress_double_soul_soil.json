@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_soul_soil"
-        }
+        "#": "uc:compressed_soul_soil"
     },
     "result": {
         "id": "uc:double_compressed_soul_soil",

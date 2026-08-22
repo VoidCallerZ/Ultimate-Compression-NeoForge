@@ -6,12 +6,8 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:iron_ingot"
-        },
-        "C": {
-            "item": "uc:compression_catalyst"
-        }
+        "#": "minecraft:iron_ingot",
+        "C": "uc:compression_catalyst"
     },
     "result": {
         "id": "uc:compressed_iron_ingot",

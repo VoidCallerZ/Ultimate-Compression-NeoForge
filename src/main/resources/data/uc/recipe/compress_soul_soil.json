@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:soul_soil"
-        }
+        "#": "minecraft:soul_soil"
     },
     "result": {
         "id": "uc:compressed_soul_soil",

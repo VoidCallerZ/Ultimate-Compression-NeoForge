@@ -6,12 +6,8 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:string"
-        },
-        "C": {
-            "item": "uc:compression_catalyst"
-        }
+        "#": "minecraft:string",
+        "C": "uc:compression_catalyst"
     },
     "result": {
         "id": "uc:compressed_string",

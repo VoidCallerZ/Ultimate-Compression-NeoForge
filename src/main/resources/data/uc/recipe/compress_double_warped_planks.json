@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_warped_planks"
-        }
+        "#": "uc:compressed_warped_planks"
     },
     "result": {
         "id": "uc:double_compressed_warped_planks",
