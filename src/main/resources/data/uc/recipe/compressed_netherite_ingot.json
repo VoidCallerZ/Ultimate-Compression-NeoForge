@@ -6,12 +6,8 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:netherite_ingot"
-        },
-        "C": {
-            "item": "uc:compression_catalyst"
-        }
+        "#": "minecraft:netherite_ingot",
+        "C": "uc:compression_catalyst"
     },
     "result": {
         "id": "uc:compressed_netherite_ingot",

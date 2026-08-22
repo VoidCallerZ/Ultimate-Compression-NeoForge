@@ -6,12 +6,8 @@
         " S "
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_netherite_ingot"
-        },
-        "S": {
-            "item": "uc:compressed_stick"
-        }
+        "#": "uc:compressed_netherite_ingot",
+        "S": "uc:compressed_stick"
     },
     "result": {
         "id": "uc:compressed_netherite_pickaxe",

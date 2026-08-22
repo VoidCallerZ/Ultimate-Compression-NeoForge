@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:lapis_block"
-        }
+        "#": "minecraft:lapis_block"
     },
     "result": {
         "id": "uc:compressed_lapis_block",

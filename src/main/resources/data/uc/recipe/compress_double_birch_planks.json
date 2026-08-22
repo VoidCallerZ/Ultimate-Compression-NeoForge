@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_birch_planks"
-        }
+        "#": "uc:compressed_birch_planks"
     },
     "result": {
         "id": "uc:double_compressed_birch_planks",

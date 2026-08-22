@@ -6,12 +6,8 @@
         "RRR"
     ],
     "key": {
-        "R": {
-            "item": "minecraft:redstone"
-        },
-        "I": {
-            "item": "minecraft:iron_ingot"
-        }
+        "R": "minecraft:redstone",
+        "I": "minecraft:iron_ingot"
     },
     "result": {
         "id": "uc:compression_catalyst",

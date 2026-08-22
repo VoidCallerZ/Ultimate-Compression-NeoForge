@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:bamboo_block"
-        }
+        "#": "minecraft:bamboo_block"
     },
     "result": {
         "id": "uc:compressed_bamboo_block",

@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:blasting",
+    "ingredient": "uc:compressed_raw_copper",
+    "result": {
+        "id": "uc:compressed_copper_ingot",
+        "count": 1
+    },
+    "experience": 6.3,
+    "cookingtime": 100
+}

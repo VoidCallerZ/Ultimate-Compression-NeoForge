@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_cobbled_deepslate"
-        }
+        "#": "uc:compressed_cobbled_deepslate"
     },
     "result": {
         "id": "uc:double_compressed_cobbled_deepslate",

@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_lapis_block"
-        }
+        "uc:compressed_lapis_block"
     ],
     "result": {
         "id": "minecraft:lapis_block",

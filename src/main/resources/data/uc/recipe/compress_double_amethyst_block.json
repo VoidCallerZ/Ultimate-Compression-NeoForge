@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_amethyst_block"
-        }
+        "#": "uc:compressed_amethyst_block"
     },
     "result": {
         "id": "uc:double_compressed_amethyst_block",

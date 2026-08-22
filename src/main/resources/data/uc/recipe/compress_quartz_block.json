@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:quartz_block"
-        }
+        "#": "minecraft:quartz_block"
     },
     "result": {
         "id": "uc:compressed_quartz_block",

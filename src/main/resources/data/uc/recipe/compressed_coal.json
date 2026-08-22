@@ -6,12 +6,8 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:coal"
-        },
-        "C": {
-            "item": "uc:compression_catalyst"
-        }
+        "#": "minecraft:coal",
+        "C": "uc:compression_catalyst"
     },
     "result": {
         "id": "uc:compressed_coal",

@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_jungle_log"
-        }
+        "#": "uc:compressed_jungle_log"
     },
     "result": {
         "id": "uc:double_compressed_jungle_log",

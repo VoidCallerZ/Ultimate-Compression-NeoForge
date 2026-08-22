@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_netherrack"
-        }
+        "uc:compressed_netherrack"
     ],
     "result": {
         "id": "minecraft:netherrack",

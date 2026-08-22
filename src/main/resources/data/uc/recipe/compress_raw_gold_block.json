@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:raw_gold_block"
-        }
+        "#": "minecraft:raw_gold_block"
     },
     "result": {
         "id": "uc:compressed_raw_gold_block",

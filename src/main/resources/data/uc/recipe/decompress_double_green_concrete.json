@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:double_compressed_green_concrete"
-        }
+        "uc:double_compressed_green_concrete"
     ],
     "result": {
         "id": "uc:compressed_green_concrete",

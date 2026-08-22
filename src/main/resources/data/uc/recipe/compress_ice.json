@@ -2,13 +2,12 @@
     "type": "minecraft:crafting_shaped",
     "pattern": [
         "###",
-        "###",
+        "#C#",
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:ice"
-        }
+        "#": "minecraft:ice",
+        "C": "uc:compression_catalyst"
     },
     "result": {
         "id": "uc:compressed_ice",

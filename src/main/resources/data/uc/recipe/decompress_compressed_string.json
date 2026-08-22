@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_string"
-        }
+        "uc:compressed_string"
     ],
     "result": {
         "id": "minecraft:string",

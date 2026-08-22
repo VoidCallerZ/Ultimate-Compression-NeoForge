@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_gold_block"
-        }
+        "#": "uc:compressed_gold_block"
     },
     "result": {
         "id": "uc:double_compressed_gold_block",

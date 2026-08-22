@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_blackstone"
-        }
+        "#": "uc:compressed_blackstone"
     },
     "result": {
         "id": "uc:double_compressed_blackstone",

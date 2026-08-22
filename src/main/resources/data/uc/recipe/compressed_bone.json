@@ -6,12 +6,8 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:bone"
-        },
-        "C": {
-            "item": "uc:compression_catalyst"
-        }
+        "#": "minecraft:bone",
+        "C": "uc:compression_catalyst"
     },
     "result": {
         "id": "uc:compressed_bone",

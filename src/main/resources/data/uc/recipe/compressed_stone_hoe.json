@@ -6,12 +6,8 @@
         " S"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_cobblestone"
-        },
-        "S": {
-            "item": "uc:compressed_stick"
-        }
+        "#": "uc:compressed_cobblestone",
+        "S": "uc:compressed_stick"
     },
     "result": {
         "id": "uc:compressed_stone_hoe",

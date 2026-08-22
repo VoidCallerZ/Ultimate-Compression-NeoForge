@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_raw_iron"
-        }
+        "uc:compressed_raw_iron"
     ],
     "result": {
         "id": "minecraft:raw_iron",

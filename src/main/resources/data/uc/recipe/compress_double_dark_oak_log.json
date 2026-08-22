@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_dark_oak_log"
-        }
+        "#": "uc:compressed_dark_oak_log"
     },
     "result": {
         "id": "uc:double_compressed_dark_oak_log",

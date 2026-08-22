@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_white_concrete"
-        }
+        "uc:compressed_white_concrete"
     ],
     "result": {
         "id": "minecraft:white_concrete",

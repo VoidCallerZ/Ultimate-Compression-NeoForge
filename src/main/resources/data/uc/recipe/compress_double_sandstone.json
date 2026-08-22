@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_sandstone"
-        }
+        "#": "uc:compressed_sandstone"
     },
     "result": {
         "id": "uc:double_compressed_sandstone",

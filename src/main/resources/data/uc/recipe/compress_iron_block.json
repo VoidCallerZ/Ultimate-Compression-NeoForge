@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:iron_block"
-        }
+        "#": "minecraft:iron_block"
     },
     "result": {
         "id": "uc:compressed_iron_block",

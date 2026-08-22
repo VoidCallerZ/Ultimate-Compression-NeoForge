@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_light_gray_wool"
-        }
+        "#": "uc:compressed_light_gray_wool"
     },
     "result": {
         "id": "uc:double_compressed_light_gray_wool",

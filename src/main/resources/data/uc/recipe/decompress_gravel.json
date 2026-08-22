@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:compressed_gravel"
-        }
+        "uc:compressed_gravel"
     ],
     "result": {
         "id": "minecraft:gravel",

@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:cyan_concrete"
-        }
+        "#": "minecraft:cyan_concrete"
     },
     "result": {
         "id": "uc:compressed_cyan_concrete",

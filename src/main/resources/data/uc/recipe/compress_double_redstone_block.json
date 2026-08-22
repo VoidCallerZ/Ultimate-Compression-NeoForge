@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_redstone_block"
-        }
+        "#": "uc:compressed_redstone_block"
     },
     "result": {
         "id": "uc:double_compressed_redstone_block",

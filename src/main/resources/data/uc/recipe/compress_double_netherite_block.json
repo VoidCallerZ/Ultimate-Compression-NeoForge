@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "uc:compressed_netherite_block"
-        }
+        "#": "uc:compressed_netherite_block"
     },
     "result": {
         "id": "uc:double_compressed_netherite_block",

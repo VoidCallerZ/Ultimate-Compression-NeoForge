@@ -6,9 +6,7 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:amethyst_shard"
-        }
+        "#": "minecraft:amethyst_shard"
     },
     "result": {
         "id": "uc:compressed_amethyst_shard",

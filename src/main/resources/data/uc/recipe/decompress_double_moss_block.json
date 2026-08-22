@@ -1,9 +1,7 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "uc:double_compressed_moss_block"
-        }
+        "uc:double_compressed_moss_block"
     ],
     "result": {
         "id": "uc:compressed_moss_block",
