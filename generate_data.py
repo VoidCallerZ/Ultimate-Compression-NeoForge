@@ -119,7 +119,7 @@ VANILLA_CONFLICTS = {
     "iron_ingot", "gold_ingot", "copper_ingot", "diamond", "emerald",
     "lapis_lazuli", "redstone", "coal", "netherite_ingot", "copper_nugget",
     "iron_nugget", "gold_nugget", "quartz", "bone", "string",
-    "raw_iron", "raw_gold", "raw_copper", "resin_clump", "sulfur"
+    "raw_iron", "raw_gold", "raw_copper", "resin_clump", "sulfur",
 }
 
 # -------------------------------------------------------------------------
@@ -127,13 +127,14 @@ VANILLA_CONFLICTS = {
 # These use the 8-around-catalyst pattern to avoid conflicts.
 # -------------------------------------------------------------------------
 BLOCK_VANILLA_CONFLICTS = {
-    "sulfur",
+    "ice", "packed_ice", "sulfur",
 }
 
 COMPRESSED_ITEMS = [
     { "name": "compressed_raw_iron",        "base": "raw_iron",        "burn": 0 },
     { "name": "compressed_raw_gold",        "base": "raw_gold",        "burn": 0 },
     { "name": "compressed_raw_copper",      "base": "raw_copper",      "burn": 0 },
+    { "name": "compressed_copper_nugget",   "base": "copper_nugget",    "burn": 0 },
     { "name": "compressed_iron_ingot",      "base": "iron_ingot",      "burn": 0 },
     { "name": "compressed_gold_ingot",      "base": "gold_ingot",      "burn": 0 },
     { "name": "compressed_copper_ingot",    "base": "copper_ingot",    "burn": 0 },
@@ -150,12 +151,35 @@ COMPRESSED_ITEMS = [
     { "name": "compressed_bone",            "base": "bone",            "burn": 0 },
     { "name": "compressed_string",          "base": "string",          "burn": 0 },
     { "name": "compressed_feather",         "base": "feather",         "burn": 0 },
-    { "name": "compressed_copper_nugget",   "base": "copper_nugget",   "burn": 0 },
     { "name": "compressed_iron_nugget",     "base": "iron_nugget",     "burn": 0 },
     { "name": "compressed_gold_nugget",     "base": "gold_nugget",     "burn": 0 },
     { "name": "compressed_coal",            "base": "coal",            "burn": 14400 },
     { "name": "compressed_blaze_rod",       "base": "blaze_rod",       "burn": 11200 },
     { "name": "compressed_resin_clump",     "base": "resin_clump",     "burn": 0 },
+]
+
+# -------------------------------------------------------------------------
+# SMELTING RECIPES — compressed raw ores that can be smelted/blasted
+# into their compressed ingot counterpart.
+# "input"    : the compressed raw item
+# "output"   : the compressed ingot/result
+# "xp"       : experience per smelt (vanilla iron/gold = 0.7, copper = 0.7)
+# "time"     : smelting time in ticks (furnace default = 200, blast = 100)
+# -------------------------------------------------------------------------
+SMELTING_RECIPES = [
+    { "input": "compressed_raw_iron",   "output": "compressed_iron_ingot",   "xp": 6.3, "time": 200 },
+    { "input": "compressed_raw_gold",   "output": "compressed_gold_ingot",   "xp": 6.3, "time": 200 },
+    { "input": "compressed_raw_copper", "output": "compressed_copper_ingot", "xp": 6.3, "time": 200 },
+    { "input": "compressed_coal_ore",   "output": "compressed_coal",         "xp": 0.9, "time": 200 },
+    { "input": "compressed_iron_ore",   "output": "compressed_iron_ingot",   "xp": 0.9, "time": 200 },
+    { "input": "compressed_gold_ore",   "output": "compressed_gold_ingot",   "xp": 0.9, "time": 200 },
+    { "input": "compressed_copper_ore", "output": "compressed_copper_ingot", "xp": 0.9, "time": 200 },
+    { "input": "compressed_diamond_ore", "output": "compressed_diamond",     "xp": 0.9, "time": 200 },
+    { "input": "compressed_emerald_ore", "output": "compressed_emerald",     "xp": 0.9, "time": 200 },
+    { "input": "compressed_lapis_ore", "output": "compressed_lapis",         "xp": 0.9, "time": 200 },
+    { "input": "compressed_redstone_ore", "output": "compressed_redstone",   "xp": 0.9, "time": 200 },
+    { "input": "compressed_nether_quartz_ore", "output": "compressed_quartz",     "xp": 0.9, "time": 200 },
+    { "input": "compressed_nether_gold_ore", "output": "compressed_gold_ingot",    "xp": 0.9, "time": 200 },
 ]
 
 LOWERCASE_WORDS = {"a", "an", "the", "of", "in", "on", "at", "and", "or"}
@@ -506,6 +530,47 @@ def generate_item_recipes(resource_path: Path) -> int:
     return count
 
 # =============================================================================
+# SMELTING / BLASTING RECIPES
+# =============================================================================
+
+def make_smelting_recipe(input_id: str, output_id: str, xp: float, time: int) -> dict:
+    return {
+        "type": "minecraft:smelting",
+        "ingredient": input_id,
+        "result": {"id": output_id, "count": 1},
+        "experience": xp,
+        "cookingtime": time
+    }
+
+
+def make_blasting_recipe(input_id: str, output_id: str, xp: float, time: int) -> dict:
+    return {
+        "type": "minecraft:blasting",
+        "ingredient": input_id,
+        "result": {"id": output_id, "count": 1},
+        "experience": xp,
+        "cookingtime": time
+    }
+
+
+def generate_smelting_recipes(resource_path: Path) -> int:
+    out_base = resource_path / "data" / MOD_ID / "recipe"
+    count = 0
+    for entry in SMELTING_RECIPES:
+        input_id  = f"{MOD_ID}:{entry['input']}"
+        output_id = f"{MOD_ID}:{entry['output']}"
+        xp        = entry["xp"]
+        time      = entry["time"]
+        # Furnace recipe
+        write_json(out_base / f"smelt_{entry['input']}.json",
+                   make_smelting_recipe(input_id, output_id, xp, time))
+        # Blast furnace recipe (half the time)
+        write_json(out_base / f"blast_{entry['input']}.json",
+                   make_blasting_recipe(input_id, output_id, xp, time // 2))
+        count += 2
+    return count
+
+# =============================================================================
 # 5. LOOT TABLES
 # =============================================================================
 
@@ -652,6 +717,7 @@ TOOL_INGREDIENTS = {
 }
 
 ARMOR_INGREDIENTS = {
+    "leather":   "uc:compressed_leather",
     "copper":    "uc:compressed_copper_ingot",
     "iron":      "uc:compressed_iron_ingot",
     "gold":      "uc:compressed_gold_ingot",
@@ -805,6 +871,7 @@ def main():
     im2  = generate_item_models_standalone(resource_path)
     rec  = generate_block_recipes(resource_path)
     irec = generate_item_recipes(resource_path)
+    smlt = generate_smelting_recipes(resource_path)
     loot = generate_loot_tables(resource_path)
     lang = generate_lang(resource_path)
 
@@ -820,6 +887,7 @@ def main():
   Standalone item models   : {im2}
   Block recipe JSONs       : {rec}
   Item recipe JSONs        : {irec}
+  Smelting/blasting JSONs  : {smlt}
   Loot table JSONs         : {loot}
   Language entries         : {lang}
     """)
