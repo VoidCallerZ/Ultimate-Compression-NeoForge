@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:blasting",
+    "ingredient": "uc:compressed_emerald_ore",
+    "result": {
+        "id": "uc:compressed_emerald",
+        "count": 1
+    },
+    "experience": 0.9,
+    "cookingtime": 100
+}

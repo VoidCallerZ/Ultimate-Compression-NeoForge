@@ -255,19 +255,19 @@ public class UCBlocks {
                 if (fIsLog) {
                     block = BLOCKS.registerBlock(registryName,
                         RotatedPillarBlock::new,
-                        buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool));
+                        () -> buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool));
                 } else if (fIsFalling) {
                     block = BLOCKS.registerBlock(registryName,
                         UCFallingBlock::new,
-                        buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool));
+                        () -> buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool));
                 } else if (fIsLeaves) {
                     block = BLOCKS.registerBlock(registryName,
                         Block::new,
-                        buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool).noOcclusion());
+                        () -> buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool).noOcclusion());
                 } else {
                     block = BLOCKS.registerBlock(registryName,
                         Block::new,
-                        buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool));
+                        () -> buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool));
                 }
 
                 ALL_BLOCKS.put(registryName, block);
