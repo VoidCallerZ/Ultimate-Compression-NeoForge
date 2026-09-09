@@ -210,30 +210,57 @@ def write_tag_merged(path: Path, new_ids: list):
 # =============================================================================
 
 def generate_configured_features(resource_path: Path) -> int:
-    out_base = resource_path / "data" / MOD_ID / "worldgen" / "configured_feature"
+    """
+    26.3 changes:
+      - registry folder renamed configured_feature -> feature
+      - the "config" wrapper is gone; size/targets/discard sit at top level
+      - block states are plain strings, not {"Name": ...} objects
+    """
+    if MC_VERSION == "26.3":
+        out_base = resource_path / "data" / MOD_ID / "worldgen" / "feature"
+    else:
+        out_base = resource_path / "data" / MOD_ID / "worldgen" / "configured_feature"
+
     count = 0
     for ore in ORES:
         name      = ore["name"]
         is_nether = ore.get("nether", False)
         target_tag = "minecraft:base_stone_nether" if is_nether else "minecraft:deepslate_ore_replaceables"
-        data = {
-            "type": "minecraft:ore",
-            "config": {
-                "size": ore["vein_size"],
+
+        target = {
+            "predicate_type": "minecraft:tag_match",
+            "tag": target_tag
+        }
+
+        if MC_VERSION == "26.3":
+            data = {
+                "type": "minecraft:ore",
                 "discard_chance_on_air_exposure": 0.0,
+                "size": ore["vein_size"],
                 "targets": [
                     {
-                        "target": {
-                            "predicate_type": "minecraft:tag_match",
-                            "tag": target_tag
-                        },
-                        "state": {
-                            "Name": f"{MOD_ID}:{name}"
-                        }
+                        "state": f"{MOD_ID}:{name}",
+                        "target": target
                     }
                 ]
             }
-        }
+        else:
+            data = {
+                "type": "minecraft:ore",
+                "config": {
+                    "size": ore["vein_size"],
+                    "discard_chance_on_air_exposure": 0.0,
+                    "targets": [
+                        {
+                            "target": target,
+                            "state": {
+                                "Name": f"{MOD_ID}:{name}"
+                            }
+                        }
+                    ]
+                }
+            }
+
         write_json(out_base / f"{name}.json", data)
         count += 1
     return count
@@ -290,6 +317,10 @@ def generate_placed_features(resource_path: Path) -> int:
 
 # Set to "forge" for Forge builds, "neoforge" for NeoForge builds
 LOADER = "neoforge"
+
+# Set to "1.21.4" for 1.21.4+ (generates assets/<mod>/items/ client item JSONs)
+# Set to "1.21.1" for 1.21.1/1.21.2/1.21.3
+MC_VERSION = "26.3"  # "1.21.4" for 1.21.4+, "26.3" for 26.3+
 
 def generate_biome_modifiers(resource_path: Path) -> int:
     """
@@ -473,13 +504,21 @@ def generate_block_models(resource_path: Path) -> int:
 # =============================================================================
 
 def generate_item_models(resource_path: Path) -> int:
-    out_base = resource_path / "assets" / MOD_ID / "models" / "item"
+    model_base = resource_path / "assets" / MOD_ID / "models" / "item"
     count = 0
     for ore in ORES:
         name = ore["name"]
-        write_json(out_base / f"{name}.json", {
+        write_json(model_base / f"{name}.json", {
             "parent": f"{MOD_ID}:block/{name}"
         })
+        if MC_VERSION == "1.21.4":
+            items_base = resource_path / "assets" / MOD_ID / "items"
+            write_json(items_base / f"{name}.json", {
+                "model": {
+                    "type": "minecraft:model",
+                    "model": f"{MOD_ID}:block/{name}"
+                }
+            })
         count += 1
     return count
 

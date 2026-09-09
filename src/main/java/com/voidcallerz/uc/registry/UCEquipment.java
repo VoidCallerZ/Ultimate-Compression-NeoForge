@@ -41,9 +41,9 @@ public class UCEquipment {
             // registerItem passes setId'd props into the factory
             reg(pre + "_sword",   props -> new Item(props.sword(material, 3, -2.4f)));
             reg(pre + "_pickaxe", props -> new Item(props.pickaxe(material, 1, -2.8f)));
-            reg(pre + "_axe",     props -> new AxeItem(material, fd, fs,         props));
-            reg(pre + "_shovel",  props -> new ShovelItem(material, 1.5f, -3.0f, props));
-            reg(pre + "_hoe",     props -> new HoeItem(material, 0, -3.0f,       props));
+            reg(pre + "_axe",     props -> new Item(props.axe(material, fd, fs)));
+            reg(pre + "_shovel",  props -> new Item(props.shovel(material, 1.5f, -3.0f)));
+            reg(pre + "_hoe",     props -> new Item(props.hoe(material, 0, -3.0f)));
         }
 
         armorSet("copper",    UCArmorMaterials.COMPRESSED_COPPER);

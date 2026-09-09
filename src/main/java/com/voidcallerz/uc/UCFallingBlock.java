@@ -18,11 +18,6 @@ public class UCFallingBlock extends FallingBlock {
     }
 
     @Override
-    protected MapCodec<? extends FallingBlock> codec() {
-        return CODEC;
-    }
-
-    @Override
     public int getDustColor(BlockState arg0, BlockGetter arg1, BlockPos arg2) {
         return this.defaultMapColor().col;
     }

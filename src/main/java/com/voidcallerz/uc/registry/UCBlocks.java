@@ -268,7 +268,7 @@ public class UCBlocks {
                 } else if (fIsLeaves) {
                     block = BLOCKS.registerBlock(registryName,
                         Block::new,
-                        () -> buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool).noOcclusion());
+                        () -> buildProps(fColor, fSound, fHardness * fMult, fResistance * fMult, fNeedsTool).noOcclusion().isSuffocating((s, r, p) -> false).isViewBlocking((s, r, p, box) -> false));
                 } else {
                     block = BLOCKS.registerBlock(registryName,
                         Block::new,
