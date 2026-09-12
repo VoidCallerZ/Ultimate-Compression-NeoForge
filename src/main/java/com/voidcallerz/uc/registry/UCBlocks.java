@@ -25,7 +25,7 @@ public class UCBlocks {
     private static final Set<String> LOG_MATERIALS = Set.of(
         "oak_log", "spruce_log", "birch_log", "jungle_log", "acacia_log",
         "dark_oak_log", "mangrove_log", "cherry_log", "bamboo_block",
-        "crimson_stem", "warped_stem", "basalt", "pale_oak_log"
+        "crimson_stem", "warped_stem", "basalt", "pale_oak_log", "poplar_log"
     );
 
     private static final Set<String> FALLING_MATERIALS = Set.of(
@@ -53,14 +53,13 @@ public class UCBlocks {
         "pink_concrete_powder", "red_concrete_powder", "white_concrete_powder", "yellow_concrete_powder", 
         "purple_concrete_powder", "red_sand", "glowstone", "ice", "packed_ice", "blue_ice",
         "clay", "snow_block", "moss_block", "pale_moss_block", "pale_oak_log", "pale_oak_planks", "resin_block",
-        "oak_leaves", "spruce_leaves", "birch_leaves", "jungle_leaves", "acacia_leaves",
-        "dark_oak_leaves", "mangrove_leaves", "cherry_leaves", "pale_oak_leaves", "azalea_leaves", "flowering_azalea_leaves"
     );
 
     public static final Set<String> LEAVES_MATERIALS = Set.of(
         "oak_leaves", "spruce_leaves", "birch_leaves", "jungle_leaves", "acacia_leaves",
         "dark_oak_leaves", "mangrove_leaves", "cherry_leaves", "pale_oak_leaves",
-        "azalea_leaves", "flowering_azalea_leaves"
+        "azalea_leaves", "flowering_azalea_leaves", "yellow_poplar_leaves", "red_poplar_leaves", 
+        "orange_poplar_leaves"
     );
 
     private static final Object[][] MATERIALS = {
@@ -217,6 +216,13 @@ public class UCBlocks {
         { "cinnabar", MapColor.COLOR_RED, SoundType.STONE, 1.5f, 6.0f },
         { "sulfur", MapColor.COLOR_YELLOW, SoundType.STONE, 1.5f, 6.0f },
         { "potent_sulfur", MapColor.GOLD, SoundType.STONE, 1.5f, 6.0f },
+
+        // --- New in 26.3 ---
+        { "yellow_poplar_leaves", MapColor.COLOR_YELLOW, SoundType.GRASS, 0.2f, 0.2f },
+        { "red_poplar_leaves", MapColor.COLOR_RED, SoundType.GRASS, 0.2f, 0.2f },
+        { "orange_poplar_leaves", MapColor.COLOR_ORANGE, SoundType.GRASS, 0.2f, 0.2f },
+        { "poplar_log", MapColor.COLOR_BROWN, SoundType.WOOD, 2.0f, 2.0f },
+        { "poplar_planks", MapColor.COLOR_BROWN, SoundType.WOOD, 2.0f, 3.0f },
     };
 
     private static BlockBehaviour.Properties buildProps(

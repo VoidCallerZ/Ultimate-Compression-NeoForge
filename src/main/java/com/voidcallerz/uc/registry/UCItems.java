@@ -38,6 +38,7 @@ public class UCItems {
         FUEL_BLOCKS.put("mangrove_log",    300);
         FUEL_BLOCKS.put("cherry_log",      300);
         FUEL_BLOCKS.put("bamboo_block",    300);
+        FUEL_BLOCKS.put("poplar_log",      300);
 
         // Planks (vanilla 300)
         FUEL_BLOCKS.put("oak_planks",      300);
@@ -48,8 +49,7 @@ public class UCItems {
         FUEL_BLOCKS.put("dark_oak_planks", 300);
         FUEL_BLOCKS.put("mangrove_planks", 300);
         FUEL_BLOCKS.put("cherry_planks",   300);
-        FUEL_BLOCKS.put("crimson_planks",  300);
-        FUEL_BLOCKS.put("warped_planks",   300);
+        FUEL_BLOCKS.put("poplar_planks",   300);
 
         // Coal block (vanilla 16000)
         FUEL_BLOCKS.put("coal_block",    16000);

@@ -91,6 +91,8 @@ STANDARD_MATERIALS = [
     "pale_moss_block", "pale_oak_log", "pale_oak_planks", "resin_block",
     # New in 26.2
     "cinnabar", "sulfur", "potent_sulfur",
+    # New in 26.3
+    "yellow_poplar_leaves", "red_poplar_leaves", "orange_poplar_leaves", "poplar_planks",
 ]
 
 TOP_BOTTOM_MATERIALS = [
@@ -100,14 +102,15 @@ TOP_BOTTOM_MATERIALS = [
 LOG_MATERIALS = [
     "oak_log", "spruce_log", "birch_log", "jungle_log", "acacia_log",
     "dark_oak_log", "mangrove_log", "cherry_log", "bamboo_block", 
-    "crimson_stem", "warped_stem", "basalt", "pale_oak_log",
+    "crimson_stem", "warped_stem", "basalt", "pale_oak_log", "poplar_log",
 ]
 
 # Leaves need cutout_mipped render type and biome tint
 LEAVES_MATERIALS = {
     "oak_leaves", "spruce_leaves", "birch_leaves", "jungle_leaves", "acacia_leaves",
     "dark_oak_leaves", "mangrove_leaves", "cherry_leaves", "pale_oak_leaves",
-    "azalea_leaves", "flowering_azalea_leaves",
+    "azalea_leaves", "flowering_azalea_leaves", "yellow_poplar_leaves", 
+    "red_poplar_leaves", "orange_poplar_leaves",
 }
 
 ALL_MATERIALS = STANDARD_MATERIALS + TOP_BOTTOM_MATERIALS + LOG_MATERIALS
@@ -146,7 +149,7 @@ COMPRESSED_ITEMS = [
     { "name": "compressed_lapis",           "base": "lapis_lazuli",    "burn": 0 },
     { "name": "compressed_redstone",        "base": "redstone",        "burn": 0 },
     { "name": "compressed_flint",           "base": "flint",           "burn": 0 },
-    { "name": "compressed_stick",           "base": "stick",           "burn": 0 },
+    { "name": "compressed_stick",           "base": "stick",           "burn": 900 },
     { "name": "compressed_leather",         "base": "leather",         "burn": 0 },
     { "name": "compressed_bone",            "base": "bone",            "burn": 0 },
     { "name": "compressed_string",          "base": "string",          "burn": 0 },
@@ -225,7 +228,7 @@ NO_TOOL_MATS = {
     "magenta_concrete_powder", "brown_concrete_powder", "light_blue_concrete_powder",
     "lime_concrete_powder", "ice", "packed_ice", "blue_ice", "clay", 
     "snow_block", "moss_block", "pale_moss_block", "pale_oak_log", 
-    "pale_oak_planks", "resin_block",
+    "pale_oak_planks", "resin_block", "poplar_log", "poplar_planks",
 }
 
 # Everything else that needs a tool defaults to needs_stone_tool:

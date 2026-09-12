@@ -352,5 +352,15 @@
     "block.uc.compressed_sulfur": "Compressed Sulfur",
     "block.uc.double_compressed_sulfur": "Double Compressed Sulfur",
     "block.uc.compressed_potent_sulfur": "Compressed Potent Sulfur",
-    "block.uc.double_compressed_potent_sulfur": "Double Compressed Potent Sulfur"
+    "block.uc.double_compressed_potent_sulfur": "Double Compressed Potent Sulfur",
+    "block.uc.compressed_yellow_poplar_leaves": "Compressed Yellow Poplar Leaves",
+    "block.uc.double_compressed_yellow_poplar_leaves": "Double Compressed Yellow Poplar Leaves",
+    "block.uc.compressed_red_poplar_leaves": "Compressed Red Poplar Leaves",
+    "block.uc.double_compressed_red_poplar_leaves": "Double Compressed Red Poplar Leaves",
+    "block.uc.compressed_orange_poplar_leaves": "Compressed Orange Poplar Leaves",
+    "block.uc.double_compressed_orange_poplar_leaves": "Double Compressed Orange Poplar Leaves",
+    "block.uc.compressed_poplar_planks": "Compressed Poplar Planks",
+    "block.uc.double_compressed_poplar_planks": "Double Compressed Poplar Planks",
+    "block.uc.compressed_poplar_log": "Compressed Poplar Log",
+    "block.uc.double_compressed_poplar_log": "Double Compressed Poplar Log"
 }
