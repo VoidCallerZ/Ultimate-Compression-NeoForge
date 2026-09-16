@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#C#",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:emerald",
+        "C": "uc:compression_catalyst"
+    },
+    "result": {
+        "id": "uc:compressed_emerald",
+        "count": 1
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:azalea_leaves"
+    },
+    "result": {
+        "id": "uc:compressed_azalea_leaves",
+        "count": 1
+    }
+}

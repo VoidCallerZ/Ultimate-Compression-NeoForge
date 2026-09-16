@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        "uc:compressed_cinnabar"
+    ],
+    "result": {
+        "id": "minecraft:cinnabar",
+        "count": 9
+    }
+}

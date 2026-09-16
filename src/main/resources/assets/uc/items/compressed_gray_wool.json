@@ -1,0 +1,6 @@
+{
+    "model": {
+        "type": "minecraft:model",
+        "model": "uc:block/compressed_gray_wool"
+    }
+}

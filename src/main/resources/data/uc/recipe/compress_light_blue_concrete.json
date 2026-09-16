@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:light_blue_concrete"
+    },
+    "result": {
+        "id": "uc:compressed_light_blue_concrete",
+        "count": 1
+    }
+}

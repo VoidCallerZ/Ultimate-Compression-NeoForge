@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": "uc:compressed_magenta_wool"
+    },
+    "result": {
+        "id": "uc:double_compressed_magenta_wool",
+        "count": 1
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#C#",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:raw_iron",
+        "C": "uc:compression_catalyst"
+    },
+    "result": {
+        "id": "uc:compressed_raw_iron",
+        "count": 1
+    }
+}

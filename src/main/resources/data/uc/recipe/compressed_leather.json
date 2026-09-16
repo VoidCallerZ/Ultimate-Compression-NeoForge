@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:leather"
+    },
+    "result": {
+        "id": "uc:compressed_leather",
+        "count": 1
+    }
+}

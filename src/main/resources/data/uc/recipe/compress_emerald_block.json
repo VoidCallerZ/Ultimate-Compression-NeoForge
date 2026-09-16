@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:emerald_block"
+    },
+    "result": {
+        "id": "uc:compressed_emerald_block",
+        "count": 1
+    }
+}

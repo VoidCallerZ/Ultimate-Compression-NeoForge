@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#C#",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:redstone",
+        "C": "uc:compression_catalyst"
+    },
+    "result": {
+        "id": "uc:compressed_redstone",
+        "count": 1
+    }
+}

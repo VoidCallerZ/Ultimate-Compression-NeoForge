@@ -1,0 +1,13 @@
+{
+    "replace": false,
+    "values": [
+        "uc:compressed_diamond_block",
+        "uc:compressed_emerald_block",
+        "uc:compressed_netherite_block",
+        "uc:compressed_obsidian",
+        "uc:double_compressed_diamond_block",
+        "uc:double_compressed_emerald_block",
+        "uc:double_compressed_netherite_block",
+        "uc:double_compressed_obsidian"
+    ]
+}

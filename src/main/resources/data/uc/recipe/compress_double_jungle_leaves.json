@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": "uc:compressed_jungle_leaves"
+    },
+    "result": {
+        "id": "uc:double_compressed_jungle_leaves",
+        "count": 1
+    }
+}

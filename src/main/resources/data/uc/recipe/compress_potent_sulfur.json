@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:potent_sulfur"
+    },
+    "result": {
+        "id": "uc:compressed_potent_sulfur",
+        "count": 1
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        "uc:compressed_diamond"
+    ],
+    "result": {
+        "id": "minecraft:diamond",
+        "count": 8
+    }
+}

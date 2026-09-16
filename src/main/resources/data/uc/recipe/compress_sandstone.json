@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:sandstone"
+    },
+    "result": {
+        "id": "uc:compressed_sandstone",
+        "count": 1
+    }
+}

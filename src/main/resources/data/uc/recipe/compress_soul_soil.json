@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:soul_soil"
+    },
+    "result": {
+        "id": "uc:compressed_soul_soil",
+        "count": 1
+    }
+}

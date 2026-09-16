@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:feather"
+    },
+    "result": {
+        "id": "uc:compressed_feather",
+        "count": 1
+    }
+}

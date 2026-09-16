@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        "uc:double_compressed_diorite"
+    ],
+    "result": {
+        "id": "uc:compressed_diorite",
+        "count": 9
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:resin_block"
+    },
+    "result": {
+        "id": "uc:compressed_resin_block",
+        "count": 1
+    }
+}

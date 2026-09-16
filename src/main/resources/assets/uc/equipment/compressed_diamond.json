@@ -1,0 +1,14 @@
+{
+    "layers": {
+        "humanoid": [
+            {
+                "texture": "uc:compressed_diamond"
+            }
+        ],
+        "humanoid_leggings": [
+            {
+                "texture": "uc:compressed_diamond"
+            }
+        ]
+    }
+}

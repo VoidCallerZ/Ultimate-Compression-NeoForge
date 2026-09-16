@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:calcite"
+    },
+    "result": {
+        "id": "uc:compressed_calcite",
+        "count": 1
+    }
+}

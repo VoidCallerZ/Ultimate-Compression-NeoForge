@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": "uc:compressed_poplar_log"
+    },
+    "result": {
+        "id": "uc:double_compressed_poplar_log",
+        "count": 1
+    }
+}

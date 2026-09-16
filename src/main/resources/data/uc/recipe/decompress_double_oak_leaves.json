@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        "uc:double_compressed_oak_leaves"
+    ],
+    "result": {
+        "id": "uc:compressed_oak_leaves",
+        "count": 9
+    }
+}

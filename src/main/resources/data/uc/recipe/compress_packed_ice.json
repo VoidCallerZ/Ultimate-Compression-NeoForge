@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#C#",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:packed_ice",
+        "C": "uc:compression_catalyst"
+    },
+    "result": {
+        "id": "uc:compressed_packed_ice",
+        "count": 1
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#C#",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:lapis_lazuli",
+        "C": "uc:compression_catalyst"
+    },
+    "result": {
+        "id": "uc:compressed_lapis",
+        "count": 1
+    }
+}

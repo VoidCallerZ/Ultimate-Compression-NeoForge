@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        "uc:double_compressed_coal_block"
+    ],
+    "result": {
+        "id": "uc:compressed_coal_block",
+        "count": 9
+    }
+}

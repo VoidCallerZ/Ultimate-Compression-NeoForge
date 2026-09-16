@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:raw_iron_block"
+    },
+    "result": {
+        "id": "uc:compressed_raw_iron_block",
+        "count": 1
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": "uc:compressed_warped_stem"
+    },
+    "result": {
+        "id": "uc:double_compressed_warped_stem",
+        "count": 1
+    }
+}
